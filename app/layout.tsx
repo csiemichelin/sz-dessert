@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-TW" className="bg-background">
-      <body className={`${notoSansTC.variable} font-sans antialiased`}>
+      <body suppressHydrationWarning className={`${notoSansTC.variable} font-sans antialiased`}>
         <CartProvider>
           {children}
         </CartProvider>

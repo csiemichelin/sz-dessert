@@ -33,7 +33,7 @@ export function OrderPage() {
               首頁
             </Link>
             <Link href="/order" className="text-primary font-medium">
-              線上訂購
+              立即訂購
             </Link>
           </nav>
 
@@ -65,7 +65,7 @@ export function OrderPage() {
                     首頁
                   </Link>
                   <Link href="/order" className="text-lg text-primary font-medium">
-                    線上訂購
+                    立即訂購
                   </Link>
                 </nav>
               </SheetContent>
@@ -77,7 +77,7 @@ export function OrderPage() {
       {/* Hero */}
       <section className="bg-gradient-to-b from-primary/10 to-background py-12">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">線上訂購</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">立即訂購</h1>
           <p className="text-muted-foreground max-w-md mx-auto">
             選擇您喜歡的甜點，我們會用心為您製作
           </p>

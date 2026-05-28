@@ -14,6 +14,7 @@ import {
   ShoppingBag,
   Sparkles,
   Star,
+  UserPlus,
   X,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -213,7 +214,7 @@ export function HeroSection() {
           fill
           sizes="100vw"
           priority
-          className="object-cover object-center hidden sm:block lg:hidden"
+          className="object-cover object-center scale-[1.1] hidden sm:block lg:hidden"
         />
         <Image
           src="/images/banner_dessert_s.png"
@@ -221,7 +222,7 @@ export function HeroSection() {
           fill
           sizes="100vw"
           priority
-          className="object-cover object-center block sm:hidden"
+          className="object-cover object-center scale-[1.2] -translate-y-[3%] block sm:hidden"
         />
         <Image
           src="/images/banner_dessert_l.png"
@@ -230,6 +231,38 @@ export function HeroSection() {
           sizes="100vw"
           priority
           className="object-cover object-center hidden lg:block"
+        />
+        <div className="absolute bottom-14 left-1/2 z-10 flex -translate-x-1/2 items-center gap-5 sm:bottom-50 sm:gap-10 sm:left-1/2 sm:-translate-x-1/2 lg:left-58 lg:top-[90%] lg:translate-x-0 lg:-translate-y-1/2">
+          <Button
+            asChild
+            className="h-9 rounded-full bg-[var(--wood)] px-4 text-xs font-bold text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base"
+          >
+            <a href="https://www.instagram.com/s.z_dessert" target="_blank" rel="noopener noreferrer">
+              <Instagram className="size-4" />
+              追蹤 IG
+            </a>
+          </Button>
+          <Button asChild variant="outline" className="h-9 rounded-full border-[var(--line)] bg-white px-4 text-xs text-[var(--ink)] sm:h-12 sm:px-9 sm:text-base">
+            <Link href="#">
+              <UserPlus className="size-4" />
+              加入會員
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function HeroWoodSection() {
+  return (
+    <section className="h-60 sm:h-50 lg:h-40 xl:h-52">
+      <div className="h-full w-full overflow-hidden border-[8px] border-[var(--light-wood)] bg-[var(--light-wood)]">
+        <img
+          src="/images/hero_wood_section_l.png"
+          alt=""
+          aria-hidden="true"
+          className="hidden h-full w-full object-cover object-top lg:block"
         />
       </div>
     </section>
@@ -280,7 +313,7 @@ export function MenuSection() {
   const ActiveIcon = active.icon
 
   return (
-    <section id="menu" className="relative overflow-hidden border-t border-[var(--line)] bg-white px-5 py-20">
+    <section id="menu" className="relative overflow-hidden bg-white px-5 py-20">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
@@ -369,7 +402,7 @@ export function ContactSection() {
           />
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button asChild className="rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)]">
-              <Link href="/order">線上訂購</Link>
+              <Link href="/order">立即訂購</Link>
             </Button>
             <Button asChild variant="outline" className="rounded-full border-[var(--line)] bg-white px-7 text-[var(--ink)]">
               <a href="https://www.instagram.com/s.z_dessert" target="_blank" rel="noopener noreferrer">

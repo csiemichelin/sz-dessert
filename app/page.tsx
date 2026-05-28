@@ -1,6 +1,7 @@
 import {
   Header,
   HeroSection,
+  HeroWoodSection,
   MenuSection,
   ContactSection,
   ReviewsSection,
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Header />
       <HeroSection />
+      <HeroWoodSection />
       <MenuSection />
       <ContactSection />
       <ReviewsSection />
