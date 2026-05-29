@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   Clock,
   Coffee,
@@ -54,6 +54,34 @@ const steps = [
   { title: "挑選品項", text: "選擇貓舌餅、氣泡飲、歐蕾或禮盒。" },
   { title: "填寫資料", text: "確認取餐時間、取餐方式與聯絡資訊。" },
   { title: "準時取餐", text: "依取餐時間到店報取餐號碼即可。" },
+]
+
+const latestNews = [
+  {
+    date: "2026/05/29",
+    category: "營業公告",
+    text: "端午連假甜點與飲品正常供應，建議提前私訊預留貓舌餅、乳酪球禮盒與客製蛋糕取貨時段，現場甜點每日數量有限售完不再追加",
+  },
+  {
+    date: "2026/05/24",
+    category: "新品公告",
+    text: "夏季限定白桃氣泡飲正式上架，使用清爽果香與細緻氣泡調製，搭配奶香貓舌餅與伯爵貓舌餅可享下午茶組合優惠",
+  },
+  {
+    date: "2026/05/18",
+    category: "預購公告",
+    text: "父親節客製蛋糕開放預訂，可討論口味、尺寸、裝飾風格與指定取貨日期，若需插牌、蠟燭或簡短祝福字樣也可以一併備註",
+  },
+  {
+    date: "2026/05/12",
+    category: "會員公告",
+    text: "加入會員可累積消費點數，生日當月享指定甜點九折優惠與新品優先預留資格，後續也會不定期推出會員限定小禮與試吃活動",
+  },
+  {
+    date: "2026/05/06",
+    category: "活動公告",
+    text: "週三下午茶時段任選飲品搭配小份貓舌餅現折 NT$20，適合內用聊天或外帶分享，每日數量有限售完為止",
+  },
 ]
 
 type ReviewItem = {
@@ -206,8 +234,8 @@ export function Header() {
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="relative w-full aspect-[750/1060] sm:aspect-[1536/1757] lg:aspect-[2480/960]">
+    <section className="relative flex-1 overflow-hidden sm:flex-none">
+      <div className="relative h-full w-full sm:h-auto sm:aspect-[1536/1757] lg:aspect-[2480/960]">
         <Image
           src="/images/banner_dessert_m.png"
           alt="萱仔甜點首頁 Banner"
@@ -222,7 +250,7 @@ export function HeroSection() {
           fill
           sizes="100vw"
           priority
-          className="object-cover object-center scale-[1.2] -translate-y-[3%] block sm:hidden"
+          className="object-cover object-center block sm:hidden"
         />
         <Image
           src="/images/banner_dessert_l.png"
@@ -232,20 +260,14 @@ export function HeroSection() {
           priority
           className="object-cover object-center hidden lg:block"
         />
-        <div className="absolute bottom-14 left-1/2 z-10 flex -translate-x-1/2 items-center gap-5 sm:bottom-50 sm:gap-10 sm:left-1/2 sm:-translate-x-1/2 lg:left-58 lg:top-[90%] lg:translate-x-0 lg:-translate-y-1/2">
+        <div className="absolute bottom-14 left-1/2 z-10 flex -translate-x-1/2 items-center gap-5 sm:bottom-50 sm:gap-10 sm:left-1/2 sm:-translate-x-1/2 lg:left-25 lg:top-[90%] lg:translate-x-0 lg:-translate-y-1/2 xl:left-30 2xl:left-40 3xl:left-58">
           <Button
             asChild
-            className="h-9 rounded-full bg-[var(--wood)] px-4 text-xs font-bold text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base"
+            className="h-9 rounded-full bg-[var(--wood)] px-4 text-xs font-bold text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base lg:h-9 lg:px-5 lg:text-xs xl:h-10 xl:px-6 xl:text-sm 2xl:h-11 2xl:px-7 2xl:text-sm 3xl:h-12 3xl:px-9 3xl:text-base"
           >
-            <a href="https://www.instagram.com/s.z_dessert" target="_blank" rel="noopener noreferrer">
-              <Instagram className="size-4" />
-              追蹤 IG
-            </a>
-          </Button>
-          <Button asChild variant="outline" className="h-9 rounded-full border-[var(--line)] bg-white px-4 text-xs text-[var(--ink)] sm:h-12 sm:px-9 sm:text-base">
-            <Link href="#">
-              <UserPlus className="size-4" />
-              加入會員
+            <Link href="/order">
+              <ShoppingBag className="size-4" />
+              立即訂購
             </Link>
           </Button>
         </div>
@@ -255,17 +277,149 @@ export function HeroSection() {
 }
 
 export function HeroWoodSection() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const measureRef = useRef<HTMLDivElement>(null)
+  const [pages, setPages] = useState<number[][]>([latestNews.map((_, index) => index)])
+  const [activePage, setActivePage] = useState(0)
+
+  useEffect(() => {
+    const calculatePages = () => {
+      const container = containerRef.current
+      const measure = measureRef.current
+
+      if (!container || !measure) {
+        return
+      }
+
+      if (window.matchMedia("(min-width: 640px) and (max-width: 1023px)").matches) {
+        setPages(latestNews.map((_, index) => [index]))
+        setActivePage(0)
+        return
+      }
+
+      const rows = Array.from(measure.querySelectorAll<HTMLElement>("[data-news-row]"))
+      const availableHeight = container.clientHeight
+      const nextPages: number[][] = []
+      let currentPage: number[] = []
+      let currentHeight = 0
+
+      rows.forEach((row, index) => {
+        const rowHeight = row.offsetHeight
+        const shouldStartNextPage =
+          currentPage.length > 0 && currentHeight + rowHeight > availableHeight
+
+        if (shouldStartNextPage) {
+          nextPages.push(currentPage)
+          currentPage = []
+          currentHeight = 0
+        }
+
+        currentPage.push(index)
+        currentHeight += rowHeight
+      })
+
+      if (currentPage.length > 0) {
+        nextPages.push(currentPage)
+      }
+
+      setPages(nextPages.length > 0 ? nextPages : [latestNews.map((_, index) => index)])
+      setActivePage(0)
+    }
+
+    calculatePages()
+
+    const resizeObserver = new ResizeObserver(calculatePages)
+
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current)
+    }
+
+    if (measureRef.current) {
+      resizeObserver.observe(measureRef.current)
+    }
+
+    return () => resizeObserver.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (pages.length <= 1) {
+      return
+    }
+
+    const timer = window.setInterval(() => {
+      setActivePage((page) => (page + 1) % pages.length)
+    }, 4800)
+
+    return () => window.clearInterval(timer)
+  }, [pages.length])
+
+  const activeNews = pages[activePage] ?? pages[0] ?? []
+
   return (
-    <section className="h-60 sm:h-50 lg:h-40 xl:h-52">
-      <div className="h-full w-full overflow-hidden border-[8px] border-[var(--light-wood)] bg-[var(--light-wood)]">
+    <section className="h-44 flex-shrink-0 sm:h-43">
+      <div className="relative h-full w-full overflow-hidden border-[4px] sm:border-[8px] border-[var(--light-wood)] bg-[var(--light-wood)]">
         <img
           src="/images/hero_wood_section_l.png"
           alt=""
           aria-hidden="true"
-          className="hidden h-full w-full object-cover object-top lg:block"
+          className="h-full w-full object-cover object-top"
         />
+        <div className="absolute inset-x-2 top-1/2 mx-auto max-w-6xl -translate-y-1/2 sm:inset-x-8 lg:top-[54%]">
+          <div className="px-2 text-[var(--ink)] sm:px-4 sm:py-4">
+            <h2 className="mb-1 text-base font-black leading-none text-[var(--wood-dark)] sm:mb-2 sm:text-xl">最新消息</h2>
+            <div className="mb-1.5 flex items-center justify-center gap-3 sm:mb-2">
+              <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent via-[var(--wood)] to-transparent opacity-70" />
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 text-[var(--wood)]">
+                <path d="M8 1L9.5 6.5L15 8L9.5 9.5L8 15L6.5 9.5L1 8L6.5 6.5L8 1Z" fill="currentColor" opacity="0.85" />
+              </svg>
+              <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent via-[var(--wood)] to-transparent opacity-70" />
+            </div>
+            <div ref={containerRef} className="relative h-20 overflow-hidden sm:h-16 lg:h-16" aria-live="polite">
+              <div key={activePage} className="latest-news-page">
+                {activeNews.map((newsIndex) => (
+                  <NewsRow key={latestNews[newsIndex].date} item={latestNews[newsIndex]} />
+                ))}
+              </div>
+              <div
+                ref={measureRef}
+                className="pointer-events-none invisible absolute inset-x-0 top-0"
+                aria-hidden="true"
+              >
+                {latestNews.map((item) => (
+                  <NewsRow key={`measure-${item.date}`} item={item} />
+                ))}
+              </div>
+            </div>
+            <div className="mt-2 flex items-center justify-center gap-1">
+              {pages.map((_, index) => (
+                <div
+                  key={index}
+                  className={`size-1.5 rounded-full bg-[var(--wood)] transition-opacity ${
+                    index === activePage ? "opacity-100" : "opacity-40"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+  )
+}
+
+function NewsRow({ item }: { item: (typeof latestNews)[number] }) {
+  return (
+    <div data-news-row className="flex flex-row items-start gap-2 py-0.5 text-xs font-bold leading-6 sm:gap-4 sm:text-sm sm:leading-7">
+      <time className="shrink-0 font-black text-[var(--wood)]" dateTime={item.date.replaceAll("/", "-")}>
+        {item.date}
+      </time>
+      <p className="min-w-0 text-[var(--ink)]">
+        <span className="mr-2 text-[var(--brand-pink)]">|</span>
+        <span>{item.category}</span>
+        <span className="mx-2 text-[var(--brand-pink)]">|</span>
+        <span>{item.text}</span>
+      </p>
+    </div>
   )
 }
 

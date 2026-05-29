@@ -205,6 +205,11 @@
     background-position: center, center, 440px 86px;
     background-size: 100% 100%, 100% 100%, 580px 580px;
   }
+
+  .latest-news-page {
+    animation: latest-news-cycle 4.8s ease-in-out both;
+    will-change: opacity, transform;
+  }
 }
 
 @keyframes float-card {
@@ -224,5 +229,25 @@
   }
   50% {
     transform: translateY(12px);
+  }
+}
+
+@keyframes latest-news-cycle {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  12%,
+  68% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  82% {
+    opacity: 0.42;
+    transform: translateY(-12px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-24px);
   }
 }
