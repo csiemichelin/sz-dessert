@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { type ReactNode, useEffect, useRef, useState } from "react"
 import {
   Clock,
   Coffee,
@@ -15,7 +15,6 @@ import {
   Quote,
   ShoppingBag,
   Star,
-  UserPlus,
   X,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -29,9 +28,9 @@ const storeImages = [
 ]
 
 const steps = [
-  { title: "挑選品項", text: "選擇貓舌餅、氣泡飲、歐蕾或禮盒。" },
-  { title: "填寫資料", text: "確認取餐時間、取餐方式與聯絡資訊。" },
-  { title: "準時取餐", text: "依取餐時間到店報取餐號碼即可。" },
+  { title: "挑選品項", text: "選擇喜歡的商品與數量" },
+  { title: "填寫資料", text: "確認取餐時間、付款方式與聯絡資訊" },
+  { title: "準時取餐", text: "依取餐時間到店報取餐號碼即可" },
 ]
 
 const latestNews = [
@@ -180,7 +179,7 @@ function SectionTitle({
   align = "left",
 }: {
   eyebrow: string
-  title: string
+  title: ReactNode
   description?: string
   align?: "center" | "left"
 }) {
@@ -208,7 +207,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-8 md:flex">
           <Link href="#menu" className="text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand-pink)]">
-            人氣商品
+            熱銷商品
           </Link>
           <Link href="#how" className="text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand-pink)]">
             訂購方式
@@ -231,7 +230,7 @@ export function Header() {
 
       {isMenuOpen && (
         <nav className="grid gap-4 border-t border-[var(--line)] bg-[var(--cream)] px-5 py-5 md:hidden">
-          <Link href="#menu" onClick={() => setIsMenuOpen(false)}>人氣商品</Link>
+          <Link href="#menu" onClick={() => setIsMenuOpen(false)}>熱銷商品</Link>
           <Link href="#how" onClick={() => setIsMenuOpen(false)}>訂購方式</Link>
           <Link href="#reviews" onClick={() => setIsMenuOpen(false)}>顧客好評</Link>
           <Button asChild className="rounded-full bg-[var(--wood)] text-white hover:bg-[var(--wood-dark)]">
@@ -245,8 +244,8 @@ export function Header() {
 
 export function HeroSection() {
   return (
-    <section className="relative flex-1 overflow-hidden sm:flex-none">
-      <div className="relative h-full w-full sm:h-auto sm:aspect-[1536/1757] lg:aspect-[2480/960]">
+    <section className="relative flex-1 overflow-hidden sm:flex-none 2xl:min-h-0 2xl:flex-1">
+      <div className="relative h-full w-full sm:h-auto sm:aspect-[1536/1757] lg:aspect-[2480/960] 2xl:h-full 2xl:aspect-auto">
         <Image
           src="/images/banner_dessert_m.png"
           alt="萱仔甜點首頁 Banner"
@@ -271,7 +270,7 @@ export function HeroSection() {
           priority
           className="object-cover object-center hidden lg:block"
         />
-        <div className="absolute bottom-14 left-1/2 z-10 flex -translate-x-1/2 items-center gap-5 sm:bottom-50 sm:gap-10 sm:left-1/2 sm:-translate-x-1/2 lg:left-25 lg:top-[90%] lg:translate-x-0 lg:-translate-y-1/2 xl:left-30 2xl:left-45 3xl:left-58">
+        <div className="absolute bottom-14 left-1/2 z-10 flex -translate-x-1/2 items-center gap-5 sm:bottom-50 sm:gap-10 sm:left-1/2 sm:-translate-x-1/2 lg:left-[calc(25%+50px)] lg:top-[90%] lg:-translate-x-1/2 lg:-translate-y-1/2">
           <div className="toast-steam-cta">
             <span className="toast-steam toast-steam-1" aria-hidden="true" />
             <span className="toast-steam toast-steam-2" aria-hidden="true" />
@@ -279,10 +278,11 @@ export function HeroSection() {
             <span className="toast-steam toast-steam-4" aria-hidden="true" />
             <Button
               asChild
-              className="toast-cta-button h-9 rounded-full bg-[var(--wood)] px-4 text-xs font-bold text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base lg:h-9 lg:px-5 lg:text-xs xl:h-10 xl:px-6 xl:text-sm 2xl:h-11 2xl:px-7 2xl:text-sm 3xl:h-12 3xl:px-9 3xl:text-base"
+              size={null}
+              className="toast-cta-button h-9 rounded-full bg-[var(--wood)] px-5 py-0 text-xs font-bold leading-none text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base lg:h-10 lg:px-9 lg:text-sm xl:h-11 xl:px-11 xl:text-sm 2xl:h-12 2xl:px-12 2xl:text-base 3xl:h-14 3xl:px-14 3xl:text-base"
             >
               <Link href="/order">
-                <ShoppingBag className="size-4" />
+                <ShoppingBag className="size-4 lg:size-5" />
                 立即訂購
               </Link>
             </Button>
@@ -483,7 +483,7 @@ export function MenuSection() {
   const active = bestSellerCategories[activeCategory]
 
   return (
-    <section id="menu" className="relative overflow-hidden bg-white px-5 py-20">
+    <section id="menu" className="relative overflow-hidden bg-white px-5 py-20 md:px-10 lg:px-5">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
       <div className="relative mx-auto max-w-6xl">
         <div className="mx-auto mb-8 w-full max-w-[360px] md:max-w-none">
@@ -581,38 +581,70 @@ export function MenuSection() {
 
 export function ContactSection() {
   return (
-    <section id="how" className="wood-grain-light wood-grain-b wood-grain-faded relative border-t border-[var(--line)] bg-[var(--light-wood)] px-5 py-20">
+    <section id="how" className="wood-grain-light wood-grain-b wood-grain-faded relative border-t border-[var(--line)] bg-[var(--light-wood)] px-5 py-20 md:px-10 lg:px-5">
       <div className="mx-auto grid w-full max-w-[360px] gap-10 md:max-w-6xl lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <SectionTitle
             eyebrow="How it works"
-            title="三個步驟，把甜甜的時刻帶回家"
-            description="請依照取餐時間到店報取餐號碼，不用提早到。最新品項、限定口味與販售時間會更新在 Instagram。"
+            title={
+              <>
+                三個步驟
+                <br />
+                把甜蜜帶回家
+              </>
+            }
+            description="請依取餐時間到店報取餐號碼即可，無需提早到。最新品項與限定口味請參考 Instagram"
           />
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button asChild className="rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)]">
-              <Link href="/order">立即訂購</Link>
+              <Link href="/order">
+                <ShoppingBag className="size-4" />
+                立即訂購
+              </Link>
             </Button>
-            <Button asChild variant="outline" className="rounded-full border-[var(--line)] bg-white px-7 text-[var(--ink)]">
-              <a href="https://www.instagram.com/s.z_dessert" target="_blank" rel="noopener noreferrer">
-                <Instagram className="size-4" />
-                追蹤 IG
-              </a>
-            </Button>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a href="https://www.instagram.com/s.z_dessert" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="block transition hover:-translate-y-0.5">
+              <Image src="/images/icons/ig.png" alt="" width={42} height={42} className="size-10 rounded-full object-cover drop-shadow-[0_8px_18px_rgba(75,61,45,0.14)]" />
+            </a>
+            <a href="https://line.me/R/ti/p/@kek5408f" target="_blank" rel="noopener noreferrer" aria-label="LINE" className="block transition hover:-translate-y-0.5">
+              <Image src="/images/icons/line.png" alt="" width={42} height={42} className="size-10 rounded-full object-cover drop-shadow-[0_8px_18px_rgba(75,61,45,0.14)]" />
+            </a>
+            <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fkek5408f%2F%3Flocale%3Dzh_TW" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="block transition hover:-translate-y-0.5">
+              <Image src="/images/icons/fb.png" alt="" width={42} height={42} className="size-10 rounded-full object-cover drop-shadow-[0_8px_18px_rgba(75,61,45,0.14)]" />
+            </a>
           </div>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
-          {steps.map((step, index) => (
-            <div key={step.title} className="rounded-[30px] bg-[var(--cream)] p-6">
-              <div className="mb-6 flex size-11 items-center justify-center rounded-full bg-[var(--wood)] text-lg font-black text-white">
-                {index + 1}
+        <div className="space-y-8">
+          <div className="relative grid gap-7 px-3 py-4 md:grid-cols-3 md:items-start md:gap-0 md:px-4 md:py-8">
+            <svg className="pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible max-md:block" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M 25 12 C 25 28 73 28 73 44 S 25 60 25 76" fill="none" stroke="rgba(117, 88, 58, 0.56)" strokeWidth="1.25" strokeDasharray="3 3" strokeLinecap="round" />
+              <circle cx="50" cy="28" r="1.7" fill="rgb(117, 88, 58)" />
+              <circle cx="50" cy="60" r="1.7" fill="rgb(117, 88, 58)" />
+            </svg>
+            <div className="absolute left-[calc(16.666%+48px)] right-[calc(50%+48px)] top-[83px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
+            <div className="absolute left-[calc(50%+48px)] right-[calc(16.666%+48px)] top-[83px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
+            <div className="absolute left-1/3 top-[80px] hidden size-2 -translate-x-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
+            <div className="absolute left-2/3 top-[80px] hidden size-2 -translate-x-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
+            {steps.map((step, index) => (
+              <div
+                key={step.title}
+                className={`relative z-10 w-[72%] rounded-[26px] px-2 py-5 text-center transition hover:bg-white/28 md:w-full md:px-4 ${
+                  index % 2 === 0 ? "max-md:mr-auto max-md:-ml-5" : "max-md:ml-auto max-md:-mr-5"
+                }`}
+              >
+                <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[var(--wood)] text-2xl font-black text-white shadow-[0_14px_30px_rgba(117,88,58,0.18)] ring-4 ring-white/50 md:size-16 md:text-3xl">
+                  {index + 1}
+                </div>
+                <h3 className="mt-6 text-xl font-black tracking-wide text-[var(--ink)]">{step.title}</h3>
+                <p className="mx-auto mt-1.5 max-w-[12rem] text-sm font-bold leading-6 text-[var(--muted-text)] md:text-base">
+                  {step.text}
+                </p>
               </div>
-              <h3 className="text-xl font-black text-[var(--ink)]">{step.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-[var(--muted-text)]">{step.text}</p>
-            </div>
-          ))}
-          <div className="rounded-[30px] bg-[var(--cream)] p-6 md:col-span-3">
+            ))}
+          </div>
+          <div className="rounded-[30px] bg-[var(--cream)] p-6">
             <div className="grid gap-4 md:grid-cols-3">
               <div>
                 <Instagram className="mb-4 size-7 text-[var(--brand-pink)]" />
@@ -683,7 +715,7 @@ export function ReviewsSection() {
   }, [page])
 
   return (
-    <section id="reviews" className="relative overflow-hidden border-t border-[var(--line)] bg-white px-5 py-20">
+    <section id="reviews" className="relative overflow-hidden border-t border-[var(--line)] bg-white px-5 py-20 md:px-10 lg:px-5">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-40" />
 
       <div className="relative mx-auto w-full max-w-[360px] md:max-w-6xl">
