@@ -173,11 +173,11 @@
 
   .terrazzo {
     background-image:
-      radial-gradient(circle at 12% 18%, rgba(167, 122, 79, 0.16) 0 2px, transparent 3px),
-      radial-gradient(circle at 72% 28%, rgba(217, 138, 158, 0.16) 0 2px, transparent 3px),
-      radial-gradient(circle at 34% 76%, rgba(116, 139, 137, 0.13) 0 2px, transparent 3px),
-      radial-gradient(circle at 88% 72%, rgba(167, 122, 79, 0.12) 0 1px, transparent 2px);
-    background-size: 96px 96px, 112px 112px, 88px 88px, 72px 72px;
+      radial-gradient(circle at 12% 18%, rgba(126, 96, 70, 0.18) 0 3.5px, transparent 4px),
+      radial-gradient(circle at 72% 28%, rgba(174, 108, 122, 0.16) 0 3px, transparent 3.5px),
+      radial-gradient(circle at 34% 76%, rgba(91, 112, 110, 0.14) 0 3px, transparent 3.5px),
+      radial-gradient(circle at 88% 72%, rgba(126, 96, 70, 0.14) 0 2.5px, transparent 3px);
+    background-size: 126px 126px, 146px 146px, 118px 118px, 98px 98px;
   }
 
   .wood-grain-light {
