@@ -768,16 +768,13 @@ export function ReviewsSection() {
 
 export function Footer() {
   return (
-    <footer className="wood-grain-light wood-grain-c wood-grain-faded bg-[var(--light-wood)] px-5 py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 border-t border-[var(--line)] pt-8 text-center md:flex-row md:text-left">
-        <div className="flex items-center gap-3">
-          <Image src="/logo.png" alt="萱仔甜點" width={44} height={44} className="rounded-full" />
-          <div>
-            <p className="font-black text-[var(--ink)]">萱仔甜點</p>
-            <p className="text-sm text-[var(--muted-text)]">甜甜吃甜點！</p>
-          </div>
-        </div>
-        <p className="text-sm text-[var(--muted-text)]">© 2024 萱仔甜點 S.Z Dessert. All rights reserved.</p>
+    <footer className="wood-grain-light wood-grain-c wood-grain-faded bg-[var(--light-wood)] px-5 py-4">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 border-t border-[var(--line)] pt-3 text-center sm:flex-row sm:text-left">
+        <Image src="/logo.png" alt="萱仔甜點" width={32} height={32} className="rounded-full" />
+        <p className="text-xs leading-5 text-[var(--muted-text)]">
+          © 2024 <span className="font-black text-[var(--wood)]">萱仔甜點</span> S.Z Dessert. All rights reserved. Designed by{" "}
+          <span className="font-black text-[var(--wood)]">Michelin Yu</span>.
+        </p>
       </div>
     </footer>
   )
