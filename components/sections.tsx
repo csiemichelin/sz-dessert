@@ -6,13 +6,14 @@ import { useEffect, useRef, useState } from "react"
 import {
   Clock,
   Coffee,
+  Cookie,
   Gift,
   Instagram,
   MapPin,
+  Medal,
   Menu,
   Quote,
   ShoppingBag,
-  Sparkles,
   Star,
   UserPlus,
   X,
@@ -25,29 +26,6 @@ const storeImages = [
   "/images/store-style-3.jpg",
   "/images/store-style-4.jpg",
   "/images/store-style-5.jpg",
-]
-
-const productCards = [
-  {
-    name: "經典貓舌餅",
-    caption: "奶香 / 伯爵 / 可可 / 抹茶",
-    image: "/images/cat-tongue-cookies.jpg",
-  },
-  {
-    name: "清爽氣泡飲",
-    caption: "草莓 / 藍莓 / 鳳梨 / 白桃",
-    image: "/images/drinks.jpg",
-  },
-  {
-    name: "乳酪球禮盒",
-    caption: "送禮首選 NT$340",
-    image: "/images/gift-box.jpg",
-  },
-  {
-    name: "手作甜點組",
-    caption: "週三 11:00 開始供應",
-    image: "/images/hero-desserts.jpg",
-  },
 ]
 
 const steps = [
@@ -128,37 +106,62 @@ const fallbackReviews: ReviewItem[] = [
   },
 ]
 
-const menuCategories = [
+const bestSellerCategories = [
   {
     title: "餅乾",
-    description: "多種口味貓舌餅",
-    icon: Sparkles,
-    image: "/images/cat-tongue-cookies.jpg",
+    description: "酥脆奶香與茶香系單品，午後最容易被帶走的四款。",
+    icon: Cookie,
     items: [
-      { name: "奶香貓舌餅", price: "小 NT$60 / 大 NT$180" },
-      { name: "伯爵貓舌餅", price: "小 NT$60 / 大 NT$180" },
-      { name: "抹茶貓舌餅", price: "小 NT$60 / 大 NT$180" },
-      { name: "蜜香紅茶貓舌餅", price: "小 NT$60 / 大 NT$180" },
+      { name: "奶香貓舌餅", note: "經典奶油香氣，回購率第一", price: "NT$120", image: "/images/cat-tongue-cookies.jpg" },
+      { name: "抹茶貓舌餅", note: "茶香清爽，甜度剛剛好", price: "NT$130", image: "/images/cat-tongue-cookies.jpg" },
+      { name: "巧克力貓舌餅", note: "濃郁可可尾韻，適合配咖啡", price: "NT$130", image: "/images/cat-tongue-cookies.jpg" },
+      { name: "起司貓舌餅", note: "鹹甜平衡，越吃越順口", price: "NT$140", image: "/images/cat-tongue-cookies.jpg" },
     ],
   },
   {
     title: "飲品",
-    description: "咖啡、歐蕾與氣泡飲",
+    description: "清爽氣泡、香醇咖啡與歐蕾，搭配甜點剛剛好。",
     icon: Coffee,
-    image: "/images/drinks.jpg",
     items: [
-      { name: "咖啡拿鐵（冰）", price: "NT$160" },
-      { name: "草莓氣泡飲", price: "NT$130" },
-      { name: "法芙娜可可歐蕾", price: "熱 NT$90 / 冰 NT$120" },
-      { name: "小山園若竹抹茶歐蕾", price: "熱 NT$110 / 冰 NT$180" },
+      { name: "草莓氣泡飲", note: "果香明亮，夏季詢問度最高", price: "NT$130", image: "/images/drinks.jpg" },
+      { name: "咖啡拿鐵", note: "奶泡細緻，甜點萬用搭檔", price: "NT$80", image: "/images/drinks.jpg" },
+      { name: "抹茶拿鐵", note: "抹茶厚度夠，茶控固定回點", price: "NT$90", image: "/images/drinks.jpg" },
+      { name: "鮮奶茶", note: "茶香溫柔，輕甜不膩口", price: "NT$75", image: "/images/drinks.jpg" },
     ],
   },
   {
     title: "禮盒",
-    description: "甜點分享與送禮",
+    description: "生日、節慶與拜訪心意，拆開就很有儀式感。",
     icon: Gift,
-    image: "/images/gift-box.jpg",
-    items: [{ name: "乳酪球禮盒", price: "NT$340" }],
+    items: [
+      { name: "乳酪球禮盒", note: "綿密乳酪球，送禮首選", price: "NT$340", image: "/images/gift-box.jpg" },
+      { name: "經典禮盒", note: "三款人氣貓舌餅一次收藏", price: "NT$350", image: "/images/gift-box.jpg" },
+      { name: "精選禮盒", note: "餅乾加乳酪球，份量更完整", price: "NT$520", image: "/images/gift-box.jpg" },
+      { name: "豪華禮盒", note: "重要日子的體面甜點組", price: "NT$680", image: "/images/gift-box.jpg" },
+    ],
+  },
+]
+
+const rankStyles = [
+  {
+    label: "金牌",
+    className: "bg-[#c99a3a] text-white shadow-[0_10px_24px_rgba(164,112,28,0.26)]",
+    gradient: "bg-[linear-gradient(135deg,rgba(201,154,58,0.22),rgba(255,244,204,0.72),rgba(255,255,255,0.78))]",
+  },
+  {
+    label: "銀牌",
+    className: "bg-[#c7beb3] text-white shadow-[0_10px_24px_rgba(123,111,98,0.22)]",
+    gradient: "bg-[linear-gradient(135deg,rgba(199,190,179,0.24),rgba(244,241,236,0.78),rgba(255,255,255,0.78))]",
+  },
+  {
+    label: "銅牌",
+    className: "bg-[#b9774f] text-white shadow-[0_10px_24px_rgba(151,82,43,0.22)]",
+    gradient: "bg-[linear-gradient(135deg,rgba(185,119,79,0.24),rgba(255,229,210,0.74),rgba(255,255,255,0.78))]",
+  },
+  {
+    label: "人氣",
+    className: "bg-[var(--soft-pink)] text-[var(--brand-pink)] shadow-[0_10px_24px_rgba(217,138,158,0.2)]",
+    gradient: "bg-[linear-gradient(135deg,rgba(217,138,158,0.22),rgba(246,224,230,0.78),rgba(255,255,255,0.78))]",
   },
 ]
 
@@ -260,7 +263,7 @@ export function HeroSection() {
           priority
           className="object-cover object-center hidden lg:block"
         />
-        <div className="absolute bottom-14 left-1/2 z-10 flex -translate-x-1/2 items-center gap-5 sm:bottom-50 sm:gap-10 sm:left-1/2 sm:-translate-x-1/2 lg:left-25 lg:top-[90%] lg:translate-x-0 lg:-translate-y-1/2 xl:left-30 2xl:left-40 3xl:left-58">
+        <div className="absolute bottom-14 left-1/2 z-10 flex -translate-x-1/2 items-center gap-5 sm:bottom-50 sm:gap-10 sm:left-1/2 sm:-translate-x-1/2 lg:left-25 lg:top-[90%] lg:translate-x-0 lg:-translate-y-1/2 xl:left-30 2xl:left-45 3xl:left-58">
           <div className="toast-steam-cta">
             <span className="toast-steam toast-steam-1" aria-hidden="true" />
             <span className="toast-steam toast-steam-2" aria-hidden="true" />
@@ -469,26 +472,29 @@ export function AboutSection() {
 
 export function MenuSection() {
   const [activeCategory, setActiveCategory] = useState(0)
-  const active = menuCategories[activeCategory]
-  const ActiveIcon = active.icon
+  const active = bestSellerCategories[activeCategory]
 
   return (
     <section id="menu" className="relative overflow-hidden bg-white px-5 py-20">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
       <div className="relative mx-auto max-w-6xl">
-        <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-          <SectionTitle eyebrow="Menu" title="人氣甜點與飲品" />
-          <div className="flex gap-3">
-            {menuCategories.map((category, index) => {
+        <div className="mb-8">
+          <SectionTitle eyebrow="Best Sellers" title="熱銷商品" />
+        </div>
+
+        <div>
+          <div className="mb-6 flex flex-wrap gap-3">
+            {bestSellerCategories.map((category, index) => {
               const Icon = category.icon
               return (
                 <button
                   key={category.title}
                   onClick={() => setActiveCategory(index)}
+                  aria-pressed={activeCategory === index}
                   className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition ${
                     activeCategory === index
                       ? "bg-[var(--wood)] text-white"
-                      : "bg-white/80 text-[var(--ink)] hover:bg-[var(--soft-pink)]"
+                      : "bg-[var(--cream)] text-[var(--ink)] hover:bg-[var(--soft-pink)]"
                   }`}
                 >
                   <Icon className="size-4" />
@@ -497,47 +503,40 @@ export function MenuSection() {
               )
             })}
           </div>
-        </div>
 
-        <div className="grid gap-5 md:grid-cols-4">
-          {productCards.map((item) => (
-            <Link
-              href="/order"
-              key={item.name}
-              className="group rounded-[28px] bg-white/84 p-5 shadow-[0_18px_46px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(75,61,45,0.14)]"
-            >
-              <div className="relative mb-5 aspect-square overflow-hidden rounded-[22px] bg-[var(--cream)]">
-                <Image src={item.image} alt={item.name} fill className="object-cover transition duration-500 group-hover:scale-105" />
-              </div>
-              <h3 className="text-xl font-black text-[var(--ink)]">{item.name}</h3>
-              <p className="mt-2 text-sm text-[var(--muted-text)]">{item.caption}</p>
-            </Link>
-          ))}
-        </div>
-
-        <div className="mt-16 grid gap-10 rounded-[38px] bg-white/86 p-6 shadow-[0_24px_70px_rgba(75,61,45,0.1)] lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[30px] bg-[var(--cream)]">
-            <Image src={active.image} alt={active.title} fill className="object-cover" />
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {active.items.map((item, index) => {
+              const rank = rankStyles[index]
+              return (
+                <Link
+                  href="/order"
+                  key={item.name}
+                  className="group relative overflow-hidden rounded-[28px] border border-white/80 bg-white p-4 shadow-[0_16px_40px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_58px_rgba(75,61,45,0.14)]"
+                >
+                  <div className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 ${rank.gradient}`} />
+                  <div className={`absolute right-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-xs font-black ${rank.className}`}>
+                    <Medal className="size-4" />
+                    {rank.label}
+                  </div>
+                  <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-[22px] bg-[var(--cream)]">
+                    <Image src={item.image} alt={item.name} fill className="object-cover transition duration-500 group-hover:scale-105" />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(40,32,24,0.34)] to-transparent" />
+                  </div>
+                  <div className="relative flex min-h-[132px] flex-col">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[var(--brand-pink)]">No. {index + 1}</p>
+                    <h4 className="mt-2 text-xl font-black leading-tight text-[var(--ink)]">{item.name}</h4>
+                    <p className="mt-2 text-sm leading-6 text-[var(--muted-text)]">{item.note}</p>
+                    <div className="mt-auto flex items-end justify-between gap-3 pt-5">
+                      <span className="rounded-full bg-[var(--cream)] px-3 py-1.5 text-xs font-bold text-[var(--muted-text)]">單品熱銷</span>
+                      <span className="text-xl font-black text-[var(--wood)]">{item.price}</span>
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
-          <div>
-            <div className="mb-6 flex items-center gap-4">
-              <div className="flex size-14 items-center justify-center rounded-full bg-[var(--soft-pink)] text-[var(--brand-pink)]">
-                <ActiveIcon className="size-7" />
-              </div>
-              <div>
-                <h3 className="text-3xl font-black text-[var(--ink)]">{active.title}</h3>
-                <p className="mt-1 text-[var(--muted-text)]">{active.description}</p>
-              </div>
-            </div>
-            <div className="grid gap-3">
-              {active.items.map((item) => (
-                <div key={item.name} className="flex items-center justify-between gap-4 rounded-[20px] bg-[var(--cream)] px-5 py-4">
-                  <span className="font-bold text-[var(--ink)]">{item.name}</span>
-                  <span className="shrink-0 text-right text-sm font-black text-[var(--wood)]">{item.price}</span>
-                </div>
-              ))}
-            </div>
-            <Button asChild className="mt-7 h-11 rounded-full bg-[var(--wood)] px-8 text-white hover:bg-[var(--wood-dark)]">
+          <div className="mt-6 flex justify-center">
+            <Button asChild className="h-11 rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)]">
               <Link href="/order">
                 <ShoppingBag className="size-4" />
                 前往訂購
@@ -662,11 +661,11 @@ export function ReviewsSection() {
           <SectionTitle
             eyebrow="Google Reviews"
             title="顧客好評推薦"
-            description="精選 Google 五星回饋，保留乾淨、溫柔的店面風格，也讓好評卡片像甜點盒一樣輕盈。"
+            description="感謝每位顧客的支持與鼓勵，陪伴我們用心做好每一份甜點"
           />
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[var(--line)] bg-white/75 px-5 py-3 text-sm font-black text-[var(--ink)] shadow-[0_14px_36px_rgba(75,61,45,0.08)]">
             <Star className="size-4 fill-[#f4c95d] text-[#f4c95d]" />
-            Google 五星精選 {Math.min(totalCount, REVIEWS_TOTAL_LIMIT)} 則
+            Google 五星精選
           </div>
         </div>
 
