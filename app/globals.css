@@ -206,6 +206,25 @@
     background-size: 100% 100%, 100% 100%, 580px 580px;
   }
 
+  .wood-grain-faded {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .wood-grain-faded::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(255, 244, 247, 0.34);
+    pointer-events: none;
+  }
+
+  .wood-grain-faded > * {
+    position: relative;
+    z-index: 1;
+  }
+
   .latest-news-page {
     animation: latest-news-cycle 4.8s ease-in-out both;
     will-change: opacity, transform;

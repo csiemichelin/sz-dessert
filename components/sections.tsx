@@ -146,21 +146,29 @@ const rankStyles = [
   {
     label: "金牌",
     className: "bg-[#c99a3a] text-white shadow-[0_10px_24px_rgba(164,112,28,0.26)]",
+    foldClassName: "bg-[#8c6724]",
+    image: "/images/icons/gold.png",
     gradient: "bg-[linear-gradient(135deg,rgba(201,154,58,0.22),rgba(255,244,204,0.72),rgba(255,255,255,0.78))]",
   },
   {
     label: "銀牌",
     className: "bg-[#c7beb3] text-white shadow-[0_10px_24px_rgba(123,111,98,0.22)]",
+    foldClassName: "bg-[#8b8176]",
+    image: "/images/icons/silver.png",
     gradient: "bg-[linear-gradient(135deg,rgba(199,190,179,0.24),rgba(244,241,236,0.78),rgba(255,255,255,0.78))]",
   },
   {
     label: "銅牌",
     className: "bg-[#b9774f] text-white shadow-[0_10px_24px_rgba(151,82,43,0.22)]",
+    foldClassName: "bg-[#7f4a2f]",
+    image: "/images/icons/bronze.png",
     gradient: "bg-[linear-gradient(135deg,rgba(185,119,79,0.24),rgba(255,229,210,0.74),rgba(255,255,255,0.78))]",
   },
   {
     label: "人氣",
     className: "bg-[var(--soft-pink)] text-[var(--brand-pink)] shadow-[0_10px_24px_rgba(217,138,158,0.2)]",
+    foldClassName: "bg-[#bd6f83]",
+    image: "/images/icons/popular.png",
     gradient: "bg-[linear-gradient(135deg,rgba(217,138,158,0.22),rgba(246,224,230,0.78),rgba(255,255,255,0.78))]",
   },
 ]
@@ -478,12 +486,12 @@ export function MenuSection() {
     <section id="menu" className="relative overflow-hidden bg-white px-5 py-20">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
       <div className="relative mx-auto max-w-6xl">
-        <div className="mb-8">
+        <div className="mx-auto mb-8 w-full max-w-[360px] md:max-w-none">
           <SectionTitle eyebrow="Best Sellers" title="熱銷商品" />
         </div>
 
         <div>
-          <div className="mb-6 flex flex-wrap gap-3">
+          <div className="mx-auto mb-6 flex w-full max-w-[360px] flex-wrap gap-3 md:max-w-none">
             {bestSellerCategories.map((category, index) => {
               const Icon = category.icon
               return (
@@ -504,20 +512,42 @@ export function MenuSection() {
             })}
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mx-auto mt-8 grid w-full max-w-[360px] gap-8 md:max-w-none md:grid-cols-2 md:gap-4 xl:grid-cols-4">
             {active.items.map((item, index) => {
               const rank = rankStyles[index]
               return (
                 <Link
                   href="/order"
                   key={item.name}
-                  className="group relative overflow-hidden rounded-[28px] border border-white/80 bg-white p-4 shadow-[0_16px_40px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_58px_rgba(75,61,45,0.14)]"
+                  className="group relative mx-auto w-full max-w-[360px] rounded-[28px] border border-white/80 bg-white p-3 shadow-[0_16px_40px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_58px_rgba(75,61,45,0.14)] md:max-w-none md:p-4"
                 >
-                  <div className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 ${rank.gradient}`} />
-                  <div className={`absolute right-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-xs font-black ${rank.className}`}>
-                    <Medal className="size-4" />
-                    {rank.label}
-                  </div>
+                  <div className={`pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 ${rank.gradient}`} />
+                  {/* <div className="pointer-events-none absolute -right-2 -top-2 z-10 h-[148px] w-[148px] overflow-hidden">
+                    <div className={`absolute right-[92px] top-0 z-0 h-2.5 w-12 rounded-t-[14px] ${rank.foldClassName}`} />
+                    <div className={`absolute right-0 top-[92px] z-0 h-12 w-2.5 rounded-r-[14px] ${rank.foldClassName}`} />
+                    <div className={`absolute right-[-46px] top-7 z-10 flex h-10 w-48 rotate-45 items-center justify-center text-xs font-black shadow-[0_0_0_3px_rgba(255,255,255,0.18),0_22px_8px_-16px_rgba(75,61,45,0.55)] ${rank.className}`}>
+                      <span className="absolute inset-1 border border-dashed border-white/85" />
+                      <span className="relative inline-flex items-center gap-1.5">
+                        {"image" in rank ? (
+                          <Image src={rank.image} alt={rank.label} width={54} height={36} className="h-8 w-12 object-contain" />
+                        ) : (
+                          <>
+                            <Medal className="size-4" />
+                            {rank.label}
+                          </>
+                        )}
+                      </span>
+                    </div>
+                  </div> */}
+                  {"image" in rank && (
+                    <Image
+                      src={rank.image}
+                      alt={rank.label}
+                      width={128}
+                      height={85}
+                      className="pointer-events-none absolute -right-6 -top-8 z-10 h-auto w-32 drop-shadow-[0_14px_24px_rgba(75,61,45,0.22)]"
+                    />
+                  )}
                   <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-[22px] bg-[var(--cream)]">
                     <Image src={item.image} alt={item.name} fill className="object-cover transition duration-500 group-hover:scale-105" />
                     <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(40,32,24,0.34)] to-transparent" />
@@ -535,7 +565,7 @@ export function MenuSection() {
               )
             })}
           </div>
-          <div className="mt-6 flex justify-center">
+          <div className="mx-auto mt-6 flex w-full max-w-[360px] justify-center md:max-w-none">
             <Button asChild className="h-11 rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)]">
               <Link href="/order">
                 <ShoppingBag className="size-4" />
@@ -551,8 +581,8 @@ export function MenuSection() {
 
 export function ContactSection() {
   return (
-    <section id="how" className="wood-grain-light wood-grain-b relative border-t border-[var(--line)] bg-[var(--light-wood)] px-5 py-20">
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+    <section id="how" className="wood-grain-light wood-grain-b wood-grain-faded relative border-t border-[var(--line)] bg-[var(--light-wood)] px-5 py-20">
+      <div className="mx-auto grid w-full max-w-[360px] gap-10 md:max-w-6xl lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <SectionTitle
             eyebrow="How it works"
@@ -656,7 +686,7 @@ export function ReviewsSection() {
     <section id="reviews" className="relative overflow-hidden border-t border-[var(--line)] bg-white px-5 py-20">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-40" />
 
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative mx-auto w-full max-w-[360px] md:max-w-6xl">
         <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <SectionTitle
             eyebrow="Google Reviews"
@@ -738,7 +768,7 @@ export function ReviewsSection() {
 
 export function Footer() {
   return (
-    <footer className="wood-grain-light wood-grain-c bg-[var(--light-wood)] px-5 py-10">
+    <footer className="wood-grain-light wood-grain-c wood-grain-faded bg-[var(--light-wood)] px-5 py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 border-t border-[var(--line)] pt-8 text-center md:flex-row md:text-left">
         <div className="flex items-center gap-3">
           <Image src="/logo.png" alt="萱仔甜點" width={44} height={44} className="rounded-full" />
