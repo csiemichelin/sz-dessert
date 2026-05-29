@@ -261,15 +261,21 @@ export function HeroSection() {
           className="object-cover object-center hidden lg:block"
         />
         <div className="absolute bottom-14 left-1/2 z-10 flex -translate-x-1/2 items-center gap-5 sm:bottom-50 sm:gap-10 sm:left-1/2 sm:-translate-x-1/2 lg:left-25 lg:top-[90%] lg:translate-x-0 lg:-translate-y-1/2 xl:left-30 2xl:left-40 3xl:left-58">
-          <Button
-            asChild
-            className="h-9 rounded-full bg-[var(--wood)] px-4 text-xs font-bold text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base lg:h-9 lg:px-5 lg:text-xs xl:h-10 xl:px-6 xl:text-sm 2xl:h-11 2xl:px-7 2xl:text-sm 3xl:h-12 3xl:px-9 3xl:text-base"
-          >
-            <Link href="/order">
-              <ShoppingBag className="size-4" />
-              立即訂購
-            </Link>
-          </Button>
+          <div className="toast-steam-cta">
+            <span className="toast-steam toast-steam-1" aria-hidden="true" />
+            <span className="toast-steam toast-steam-2" aria-hidden="true" />
+            <span className="toast-steam toast-steam-3" aria-hidden="true" />
+            <span className="toast-steam toast-steam-4" aria-hidden="true" />
+            <Button
+              asChild
+              className="toast-cta-button h-9 rounded-full bg-[var(--wood)] px-4 text-xs font-bold text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base lg:h-9 lg:px-5 lg:text-xs xl:h-10 xl:px-6 xl:text-sm 2xl:h-11 2xl:px-7 2xl:text-sm 3xl:h-12 3xl:px-9 3xl:text-base"
+            >
+              <Link href="/order">
+                <ShoppingBag className="size-4" />
+                立即訂購
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
