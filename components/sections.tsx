@@ -582,7 +582,7 @@ export function MenuSection() {
 export function ContactSection() {
   return (
     <section id="how" className="wood-grain-light wood-grain-b wood-grain-faded relative border-t border-[var(--line)] bg-[var(--light-wood)] px-5 py-20 md:px-10 lg:px-5">
-      <div className="mx-auto grid w-full max-w-[360px] gap-10 md:max-w-6xl lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div className="mx-auto grid w-full max-w-[360px] gap-4 md:max-w-6xl md:gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <SectionTitle
             eyebrow="How it works"
@@ -656,7 +656,7 @@ export function ContactSection() {
               </div>
             ))}
           </div>
-          <div className="rounded-[30px] border border-white/55 bg-[var(--cream)] p-5 shadow-[0_18px_46px_rgba(117,88,58,0.1)] md:p-6">
+          <div className="mt-7 rounded-[30px] border border-white/55 bg-[var(--cream)] p-5 shadow-[0_18px_46px_rgba(117,88,58,0.1)] md:mt-0 md:p-6">
             <div className="grid gap-0 divide-y divide-[var(--wood)]/12 md:grid-cols-[1fr_1.15fr] md:divide-x md:divide-y-0">
               <div className="grid gap-0 divide-y divide-[var(--wood)]/12 pb-5 md:pb-0 md:pr-6">
                 <div className="flex gap-4 pb-5">
