@@ -8,10 +8,10 @@ import {
   Coffee,
   Cookie,
   Gift,
-  Instagram,
   MapPin,
   Medal,
   Menu,
+  Phone,
   Quote,
   ShoppingBag,
   Star,
@@ -512,7 +512,7 @@ export function MenuSection() {
             })}
           </div>
 
-          <div className="mx-auto mt-8 grid w-full max-w-[360px] gap-8 md:max-w-none md:grid-cols-2 md:gap-4 xl:grid-cols-4">
+          <div className="mx-auto mt-8 grid w-full max-w-[360px] gap-5 md:max-w-none md:grid-cols-2 md:gap-4 xl:grid-cols-4">
             {active.items.map((item, index) => {
               const rank = rankStyles[index]
               return (
@@ -616,51 +616,93 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div className="space-y-8">
-          <div className="relative grid gap-7 px-3 py-4 md:grid-cols-3 md:items-start md:gap-0 md:px-4 md:py-8">
-            <svg className="pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible max-md:block" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M 31 19 L 79 49" fill="none" stroke="rgba(117, 88, 58, 0.58)" strokeWidth="0.58" strokeDasharray="1.6 1.45" strokeLinecap="round" />
-              <path d="M 79 49 L 31 79" fill="none" stroke="rgba(117, 88, 58, 0.58)" strokeWidth="0.58" strokeDasharray="1.6 1.45" strokeLinecap="round" />
-              <circle cx="55" cy="34" r="0.9" fill="rgb(75, 61, 45)" />
-              <circle cx="55" cy="64" r="0.9" fill="rgb(75, 61, 45)" />
-            </svg>
-            <div className="absolute left-[calc(16.666%+32px)] right-[calc(50%+32px)] top-[83px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
-            <div className="absolute left-[calc(50%+32px)] right-[calc(16.666%+32px)] top-[83px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
-            <div className="absolute left-1/3 top-[80px] hidden size-1.5 -translate-x-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
-            <div className="absolute left-2/3 top-[80px] hidden size-1.5 -translate-x-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
+        <div className="">
+          <div className="relative px-1 py-2 md:hidden">
+            <div className="absolute bottom-10 left-7 top-10 border-l-[3px] border-dashed border-[var(--wood)]/48" />
+            <div className="grid gap-5">
+              {steps.map((step, index) => (
+                <div key={step.title} className="relative flex items-center gap-4">
+                  <div className="relative z-10 flex size-14 shrink-0 items-center justify-center rounded-full bg-[var(--wood)] text-2xl font-black text-white shadow-[0_14px_30px_rgba(117,88,58,0.18)] ring-4 ring-white/50">
+                    {index + 1}
+                  </div>
+                  <div className="relative flex-1 rounded-[24px] border border-white/55 bg-white/38 px-4 py-3.5 shadow-[0_14px_32px_rgba(117,88,58,0.1)] backdrop-blur-[2px] transition hover:bg-white/65">
+                    <span className="absolute -left-1.5 top-1/2 size-3 -translate-y-1/2 rotate-45 border-b border-l border-white/55 bg-white/55" />
+                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--brand-pink)]">Step {index + 1}</p>
+                    <h3 className="mt-1 text-lg font-black tracking-wide text-[var(--ink)]">{step.title}</h3>
+                    <p className="mt-1 text-xs font-bold leading-5 text-[var(--muted-text)]">{step.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative hidden gap-5 px-4 pt-0 pb-5 md:grid md:grid-cols-3 md:items-stretch lg:gap-8">
+            <div className="absolute left-[calc(16.666%+32px)] right-[calc(50%+32px)] top-[52px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
+            <div className="absolute left-[calc(50%+32px)] right-[calc(16.666%+32px)] top-[52px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
+            <div className="absolute left-1/3 top-[52px] hidden size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
+            <div className="absolute left-2/3 top-[52px] hidden size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
             {steps.map((step, index) => (
               <div
                 key={step.title}
-                className={`relative z-10 w-[72%] rounded-[26px] px-2 py-5 text-center transition hover:bg-white/28 md:w-full md:px-4 ${
-                  index % 2 === 0 ? "max-md:mr-auto max-md:-ml-12" : "max-md:ml-auto max-md:-mr-18"
-                }`}
+                className="relative z-10 flex h-full min-h-[196px] w-full flex-col items-center rounded-[26px] px-4 py-5 text-center transition hover:bg-white/28 lg:min-h-[188px]"
               >
                 <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[var(--wood)] text-2xl font-black text-white shadow-[0_14px_30px_rgba(117,88,58,0.18)] ring-4 ring-white/50 md:size-16 md:text-3xl">
                   {index + 1}
                 </div>
-                <h3 className="mt-6 hidden text-xl font-black tracking-wide text-[var(--ink)] md:block">{step.title}</h3>
-                <p className="mx-auto mt-1.5 hidden max-w-[12rem] text-sm font-bold leading-6 text-[var(--muted-text)] md:block md:text-base">
+                <h3 className="mt-4 text-lg font-black tracking-wide text-[var(--ink)] md:mt-6 md:text-xl">{step.title}</h3>
+                <p className="mx-auto mt-1 max-w-[10.5rem] text-xs font-bold leading-5 text-[var(--muted-text)] md:mt-1.5 md:max-w-[12rem] md:text-base md:leading-6">
                   {step.text}
                 </p>
               </div>
             ))}
           </div>
-          <div className="rounded-[30px] bg-[var(--cream)] p-6">
-            <div className="grid gap-4 md:grid-cols-3">
-              <div>
-                <Instagram className="mb-4 size-7 text-[var(--brand-pink)]" />
-                <h3 className="font-black text-[var(--ink)]">Instagram</h3>
-                <p className="mt-2 text-sm text-[var(--muted-text)]">@s.z_dessert</p>
+          <div className="rounded-[30px] border border-white/55 bg-[var(--cream)] p-5 shadow-[0_18px_46px_rgba(117,88,58,0.1)] md:p-6">
+            <div className="grid gap-0 divide-y divide-[var(--wood)]/12 md:grid-cols-[1fr_1.15fr] md:divide-x md:divide-y-0">
+              <div className="grid gap-0 divide-y divide-[var(--wood)]/12 pb-5 md:pb-0 md:pr-6">
+                <div className="flex gap-4 pb-5">
+                  <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/65 text-[var(--brand-pink)] shadow-[0_10px_22px_rgba(117,88,58,0.09)]">
+                    <MapPin className="size-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-black tracking-[0.12em] text-[var(--wood)]">地址</h3>
+                    <p className="mt-2 text-sm font-bold leading-6 text-[var(--muted-text)]">435臺中市梧棲區大村里立德街95巷63號</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 pt-5">
+                  <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/65 text-[var(--brand-pink)] shadow-[0_10px_22px_rgba(117,88,58,0.09)]">
+                    <Phone className="size-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-black tracking-[0.12em] text-[var(--wood)]">電話</h3>
+                    <p className="mt-2 text-sm font-bold leading-6 text-[var(--muted-text)]">0900 407 168</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <Clock className="mb-4 size-7 text-[var(--brand-pink)]" />
-                <h3 className="font-black text-[var(--ink)]">營業時間</h3>
-                <p className="mt-2 text-sm text-[var(--muted-text)]">週三 11:00 開始供應</p>
-              </div>
-              <div>
-                <MapPin className="mb-4 size-7 text-[var(--brand-pink)]" />
-                <h3 className="font-black text-[var(--ink)]">取餐方式</h3>
-                <p className="mt-2 text-sm text-[var(--muted-text)]">到店自取 / 宅配 NT$180</p>
+              <div className="flex gap-4 pt-5 md:pl-6 md:pt-0">
+                <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/65 text-[var(--brand-pink)] shadow-[0_10px_22px_rgba(117,88,58,0.09)]">
+                  <Clock className="size-5" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-sm font-black tracking-[0.12em] text-[var(--wood)]">營業時間</h3>
+                  <dl className="mt-2 grid grid-cols-[3.3rem_1fr] gap-x-3 gap-y-1.5 text-sm leading-5 text-[var(--muted-text)]">
+                    {[
+                      ["星期日", "11:00–18:00"],
+                      ["星期一", "休息"],
+                      ["星期二", "休息"],
+                      ["星期三", "11:00–18:00"],
+                      ["星期四", "11:00–18:00"],
+                      ["星期五", "11:00–18:00"],
+                      ["星期六", "11:00–18:00"],
+                    ].map(([day, time]) => (
+                      <div key={day} className="contents">
+                        <dt className="font-bold text-[var(--muted-text)]">{day}</dt>
+                        <dd className={time === "休息" ? "font-black text-[var(--brand-pink)]" : "font-bold"}>
+                          {time}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               </div>
             </div>
           </div>
