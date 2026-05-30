@@ -619,26 +619,27 @@ export function ContactSection() {
         <div className="space-y-8">
           <div className="relative grid gap-7 px-3 py-4 md:grid-cols-3 md:items-start md:gap-0 md:px-4 md:py-8">
             <svg className="pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible max-md:block" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M 25 12 C 25 28 73 28 73 44 S 25 60 25 76" fill="none" stroke="rgba(117, 88, 58, 0.56)" strokeWidth="1.25" strokeDasharray="3 3" strokeLinecap="round" />
-              <circle cx="50" cy="28" r="1.7" fill="rgb(117, 88, 58)" />
-              <circle cx="50" cy="60" r="1.7" fill="rgb(117, 88, 58)" />
+              <path d="M 31 19 L 79 49" fill="none" stroke="rgba(117, 88, 58, 0.58)" strokeWidth="0.58" strokeDasharray="1.6 1.45" strokeLinecap="round" />
+              <path d="M 79 49 L 31 79" fill="none" stroke="rgba(117, 88, 58, 0.58)" strokeWidth="0.58" strokeDasharray="1.6 1.45" strokeLinecap="round" />
+              <circle cx="55" cy="34" r="0.9" fill="rgb(75, 61, 45)" />
+              <circle cx="55" cy="64" r="0.9" fill="rgb(75, 61, 45)" />
             </svg>
-            <div className="absolute left-[calc(16.666%+48px)] right-[calc(50%+48px)] top-[83px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
-            <div className="absolute left-[calc(50%+48px)] right-[calc(16.666%+48px)] top-[83px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
-            <div className="absolute left-1/3 top-[80px] hidden size-2 -translate-x-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
-            <div className="absolute left-2/3 top-[80px] hidden size-2 -translate-x-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
+            <div className="absolute left-[calc(16.666%+32px)] right-[calc(50%+32px)] top-[83px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
+            <div className="absolute left-[calc(50%+32px)] right-[calc(16.666%+32px)] top-[83px] hidden border-t-[3px] border-dashed border-[var(--wood)]/58 md:block" />
+            <div className="absolute left-1/3 top-[80px] hidden size-1.5 -translate-x-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
+            <div className="absolute left-2/3 top-[80px] hidden size-1.5 -translate-x-1/2 rounded-full bg-[var(--wood)] shadow-[0_0_0_5px_rgba(242,231,216,0.72)] md:block" />
             {steps.map((step, index) => (
               <div
                 key={step.title}
                 className={`relative z-10 w-[72%] rounded-[26px] px-2 py-5 text-center transition hover:bg-white/28 md:w-full md:px-4 ${
-                  index % 2 === 0 ? "max-md:mr-auto max-md:-ml-5" : "max-md:ml-auto max-md:-mr-5"
+                  index % 2 === 0 ? "max-md:mr-auto max-md:-ml-12" : "max-md:ml-auto max-md:-mr-18"
                 }`}
               >
                 <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[var(--wood)] text-2xl font-black text-white shadow-[0_14px_30px_rgba(117,88,58,0.18)] ring-4 ring-white/50 md:size-16 md:text-3xl">
                   {index + 1}
                 </div>
-                <h3 className="mt-6 text-xl font-black tracking-wide text-[var(--ink)]">{step.title}</h3>
-                <p className="mx-auto mt-1.5 max-w-[12rem] text-sm font-bold leading-6 text-[var(--muted-text)] md:text-base">
+                <h3 className="mt-6 hidden text-xl font-black tracking-wide text-[var(--ink)] md:block">{step.title}</h3>
+                <p className="mx-auto mt-1.5 hidden max-w-[12rem] text-sm font-bold leading-6 text-[var(--muted-text)] md:block md:text-base">
                   {step.text}
                 </p>
               </div>
