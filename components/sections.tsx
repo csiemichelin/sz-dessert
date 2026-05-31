@@ -146,28 +146,28 @@ const rankStyles = [
     label: "金牌",
     className: "bg-[#c99a3a] text-white shadow-[0_10px_24px_rgba(164,112,28,0.26)]",
     foldClassName: "bg-[#8c6724]",
-    image: "/images/icons/gold.png",
+    image: "/images/Hot.png",
     gradient: "bg-[linear-gradient(135deg,rgba(201,154,58,0.22),rgba(255,244,204,0.72),rgba(255,255,255,0.78))]",
   },
   {
     label: "銀牌",
     className: "bg-[#c7beb3] text-white shadow-[0_10px_24px_rgba(123,111,98,0.22)]",
     foldClassName: "bg-[#8b8176]",
-    image: "/images/icons/silver.png",
+    image: "/images/Hot.png",
     gradient: "bg-[linear-gradient(135deg,rgba(199,190,179,0.24),rgba(244,241,236,0.78),rgba(255,255,255,0.78))]",
   },
   {
     label: "銅牌",
     className: "bg-[#b9774f] text-white shadow-[0_10px_24px_rgba(151,82,43,0.22)]",
     foldClassName: "bg-[#7f4a2f]",
-    image: "/images/icons/bronze.png",
+    image: "/images/Hot.png",
     gradient: "bg-[linear-gradient(135deg,rgba(185,119,79,0.24),rgba(255,229,210,0.74),rgba(255,255,255,0.78))]",
   },
   {
     label: "人氣",
     className: "bg-[var(--soft-pink)] text-[var(--brand-pink)] shadow-[0_10px_24px_rgba(217,138,158,0.2)]",
     foldClassName: "bg-[#bd6f83]",
-    image: "/images/icons/popular.png",
+    image: "/images/Hot.png",
     gradient: "bg-[linear-gradient(135deg,rgba(217,138,158,0.22),rgba(246,224,230,0.78),rgba(255,255,255,0.78))]",
   },
 ]
@@ -512,7 +512,7 @@ export function MenuSection() {
             })}
           </div>
 
-          <div className="mx-auto mt-8 grid w-full max-w-[360px] gap-5 md:max-w-none md:grid-cols-2 md:gap-4 xl:grid-cols-4">
+          <div className="mx-auto mt-8 grid w-full max-w-[360px] gap-8 md:max-w-none md:grid-cols-2 md:gap-4 xl:grid-cols-4">
             {active.items.map((item, index) => {
               const rank = rankStyles[index]
               return (
