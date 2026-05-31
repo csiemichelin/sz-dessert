@@ -625,11 +625,13 @@ export function ContactSection() {
                   <div className="relative z-10 flex size-14 shrink-0 items-center justify-center rounded-full bg-[var(--wood)] text-2xl font-black text-white shadow-[0_14px_30px_rgba(117,88,58,0.18)] ring-4 ring-white/50">
                     {index + 1}
                   </div>
-                  <div className="relative flex-1 rounded-[24px] border border-white/55 bg-white/38 px-4 py-3.5 shadow-[0_14px_32px_rgba(117,88,58,0.1)] backdrop-blur-[2px] transition hover:bg-white/65">
+                  <div className="relative flex-1">
                     <span className="absolute -left-1.5 top-1/2 size-3 -translate-y-1/2 rotate-45 border-b border-l border-white/55 bg-white/55" />
-                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--brand-pink)]">Step {index + 1}</p>
-                    <h3 className="mt-1 text-lg font-black tracking-wide text-[var(--ink)]">{step.title}</h3>
-                    <p className="mt-1 text-xs font-bold leading-5 text-[var(--muted-text)]">{step.text}</p>
+                    <div className="relative z-0 rounded-[24px] border border-white/55 bg-[var(--cream)] px-4 py-3.5 shadow-[0_14px_32px_rgba(117,88,58,0.1)] backdrop-blur-[2px] transition hover:bg-[var(--cream)]">
+                      <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--brand-pink)]">Step {index + 1}</p>
+                      <h3 className="mt-1 text-lg font-black tracking-wide text-[var(--ink)]">{step.title}</h3>
+                      <p className="mt-1 text-xs font-bold leading-5 text-[var(--muted-text)]">{step.text}</p>
+                    </div>
                   </div>
                 </div>
               ))}
