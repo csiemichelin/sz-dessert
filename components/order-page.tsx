@@ -25,7 +25,7 @@ export function OrderPage() {
   const filteredProducts = products.filter((p) => p.category === activeCategory)
 
   return (
-    <div className="min-h-screen bg-background pt-16">
+    <div className="flex min-h-screen flex-col bg-background pt-16">
       {/* Header */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)]/70 bg-[rgba(253,250,244,0.76)] backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-16 lg:px-5">
@@ -113,7 +113,7 @@ export function OrderPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white px-5 py-20 md:px-16 lg:px-5">
+      <section className="relative flex-1 overflow-hidden bg-white px-5 py-20 md:px-16 lg:px-5">
         <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
 
         {/* Products Grid */}
