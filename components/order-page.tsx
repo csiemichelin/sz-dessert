@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { ShoppingBag, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useCart } from "@/lib/cart-context"
 import { products, categories } from "@/lib/products"
 import { ProductCard, FloatingCartButton } from "@/components/product-card"
@@ -13,65 +12,73 @@ import { CartSidebar } from "@/components/cart-sidebar"
 
 export function OrderPage() {
   const [activeCategory, setActiveCategory] = useState<string>("cookies")
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { totalItems, setIsCartOpen } = useCart()
 
   const filteredProducts = products.filter((p) => p.category === activeCategory)
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-16">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-border">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)]/70 bg-[rgba(253,250,244,0.76)] backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-16 lg:px-5">
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="萱仔甜點" width={40} height={40} className="rounded-full" />
-            <span className="font-bold text-lg text-foreground hidden sm:block">萱仔甜點</span>
+            <Image src="/logo.png" alt="萱仔甜點" width={46} height={46} className="rounded-full" />
+            <span className="text-xl font-black text-[var(--ink)]">萱仔甜點</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
-              首頁
+          <nav className="hidden items-center gap-8 md:flex">
+            <Link href="/#menu" className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
+              熱銷商品
             </Link>
-            <Link href="/order" className="text-primary font-medium">
-              立即訂購
+            <Link href="/#how" className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
+              訂購方式
             </Link>
-          </nav>
-
-          <div className="flex items-center gap-2">
+            <Link href="/#reviews" className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
+              顧客好評
+            </Link>
             <Button
-              variant="outline"
-              className="relative"
+              className="relative h-9 rounded-full bg-[var(--wood)] px-6 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]"
               onClick={() => setIsCartOpen(true)}
             >
-              <ShoppingBag className="w-5 h-5" />
+              <ShoppingBag className="size-4" />
+              購物車
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">
+                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--brand-pink)] text-xs font-bold text-white">
+                  {totalItems}
+                </span>
+              )}
+            </Button>
+          </nav>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <Button
+              className="relative rounded-full bg-[var(--wood)] px-4 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]"
+              onClick={() => setIsCartOpen(true)}
+            >
+              <ShoppingBag className="size-4" />
+              {totalItems > 0 && (
+                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--brand-pink)] text-xs font-bold text-white">
                   {totalItems}
                 </span>
               )}
               <span className="ml-2 hidden sm:inline">購物車</span>
             </Button>
 
-            {/* Mobile Menu */}
-            <Sheet>
-              <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon">
-                  <Menu className="w-5 h-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-64">
-                <nav className="flex flex-col gap-4 mt-8">
-                  <Link href="/" className="text-lg hover:text-primary transition-colors">
-                    首頁
-                  </Link>
-                  <Link href="/order" className="text-lg text-primary font-medium">
-                    立即訂購
-                  </Link>
-                </nav>
-              </SheetContent>
-            </Sheet>
+            <button className="rounded-full p-2 text-[var(--ink)] transition hover:bg-[var(--soft-pink)] active:bg-[var(--soft-pink)]" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
           </div>
         </div>
+
+        {isMenuOpen && (
+          <nav className="grid gap-4 border-t border-[var(--line)]/70 bg-[rgba(253,250,244,0.82)] px-5 py-5 backdrop-blur-xl md:hidden">
+            <Link href="/#menu" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>熱銷商品</Link>
+            <Link href="/#how" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>訂購方式</Link>
+            <Link href="/#reviews" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>顧客好評</Link>
+          </nav>
+        )}
       </header>
 
       {/* Hero */}
