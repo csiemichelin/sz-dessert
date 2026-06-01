@@ -198,8 +198,8 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(253,250,244,0.92)] backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)]/70 bg-[rgba(253,250,244,0.76)] backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-16 lg:px-5">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/logo.png" alt="萱仔甜點 Logo" width={46} height={46} className="rounded-full" />
           <span className="text-xl font-black text-[var(--ink)]">萱仔甜點</span>
@@ -229,7 +229,7 @@ export function Header() {
       </div>
 
       {isMenuOpen && (
-        <nav className="grid gap-4 border-t border-[var(--line)] bg-[var(--cream)] px-5 py-5 md:hidden">
+        <nav className="grid gap-4 border-t border-[var(--line)]/70 bg-[rgba(253,250,244,0.82)] px-5 py-5 backdrop-blur-xl md:hidden">
           <Link href="#menu" onClick={() => setIsMenuOpen(false)}>熱銷商品</Link>
           <Link href="#how" onClick={() => setIsMenuOpen(false)}>訂購方式</Link>
           <Link href="#reviews" onClick={() => setIsMenuOpen(false)}>顧客好評</Link>
@@ -381,7 +381,7 @@ export function HeroWoodSection() {
           aria-hidden="true"
           className="h-full w-full object-cover object-top"
         />
-        <div className="absolute inset-x-2 top-1/2 mx-auto max-w-6xl -translate-y-1/2 sm:inset-x-8 lg:top-[54%]">
+        <div className="absolute inset-x-2 top-1/2 mx-auto max-w-6xl -translate-y-1/2 sm:inset-x-8 md:inset-x-16 lg:inset-x-8 lg:top-[54%]">
           <div className="px-2 text-[var(--ink)] sm:px-4 sm:py-4">
             <h2 className="mb-1 text-base font-black leading-none text-[var(--wood-dark)] sm:mb-2 sm:text-xl">最新消息</h2>
             <div className="mb-1.5 flex items-center justify-center gap-3 sm:mb-2">
@@ -442,7 +442,7 @@ function NewsRow({ item }: { item: (typeof latestNews)[number] }) {
 
 export function AboutSection() {
   return (
-    <section id="space" className="relative overflow-hidden bg-white px-5 py-20">
+    <section id="space" className="relative overflow-hidden bg-white px-5 py-20 md:px-16 lg:px-5">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <SectionTitle
@@ -483,7 +483,7 @@ export function MenuSection() {
   const active = bestSellerCategories[activeCategory]
 
   return (
-    <section id="menu" className="relative overflow-hidden bg-white px-5 py-20 md:px-10 lg:px-5">
+    <section id="menu" className="relative overflow-hidden bg-white px-5 py-20 md:px-16 lg:px-5">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
       <div className="relative mx-auto max-w-6xl">
         <div className="mx-auto mb-8 w-full max-w-[360px] md:max-w-none">
@@ -512,14 +512,14 @@ export function MenuSection() {
             })}
           </div>
 
-          <div className="mx-auto mt-8 grid w-full max-w-[360px] gap-8 md:max-w-none md:grid-cols-2 md:gap-4 xl:grid-cols-4">
+          <div className="mx-auto mt-8 grid w-full max-w-[360px] gap-8 md:max-w-[680px] md:grid-cols-2 md:gap-5 lg:max-w-none xl:grid-cols-4">
             {active.items.map((item, index) => {
               const rank = rankStyles[index]
               return (
                 <Link
                   href="/order"
                   key={item.name}
-                  className="group relative mx-auto w-full max-w-[360px] rounded-[28px] border border-white/80 bg-white p-3 shadow-[0_16px_40px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_58px_rgba(75,61,45,0.14)] md:max-w-none md:p-4"
+                  className="group relative mx-auto w-full max-w-[360px] rounded-[28px] border border-white/80 bg-white p-3 shadow-[0_16px_40px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_58px_rgba(75,61,45,0.14)] md:max-w-[320px] md:p-4 lg:max-w-none"
                 >
                   <div className={`pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 ${rank.gradient}`} />
                   {/* <div className="pointer-events-none absolute -right-2 -top-2 z-10 h-[148px] w-[148px] overflow-hidden">
@@ -581,7 +581,7 @@ export function MenuSection() {
 
 export function ContactSection() {
   return (
-    <section id="how" className="wood-grain-light wood-grain-b wood-grain-faded relative border-t border-[var(--line)] bg-[var(--light-wood)] px-5 py-20 md:px-10 lg:px-5">
+    <section id="how" className="wood-grain-light wood-grain-b wood-grain-faded relative border-t border-[var(--line)] bg-[var(--light-wood)] px-5 py-20 md:px-16 lg:px-5">
       <div className="mx-auto grid w-full max-w-[360px] gap-4 md:max-w-6xl md:gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <SectionTitle
@@ -766,7 +766,7 @@ export function ReviewsSection() {
   }, [page])
 
   return (
-    <section id="reviews" className="relative overflow-hidden border-t border-[var(--line)] bg-white px-5 py-20 md:px-10 lg:px-5">
+    <section id="reviews" className="relative overflow-hidden border-t border-[var(--line)] bg-white px-5 py-20 md:px-16 lg:px-5">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-40" />
 
       <div className="relative mx-auto w-full max-w-[360px] md:max-w-6xl">
@@ -851,7 +851,7 @@ export function ReviewsSection() {
 
 export function Footer() {
   return (
-    <footer className="wood-grain-light wood-grain-c wood-grain-faded bg-[var(--light-wood)] px-5 py-4">
+    <footer className="wood-grain-light wood-grain-c wood-grain-faded bg-[var(--light-wood)] px-5 py-4 md:px-16 lg:px-5">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 border-t border-[var(--line)] pt-3 text-center sm:flex-row sm:text-left">
         <Image src="/logo.png" alt="萱仔甜點" width={32} height={32} className="rounded-full" />
         <p className="text-xs leading-5 text-[var(--muted-text)]">
