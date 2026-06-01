@@ -29,15 +29,15 @@ export function OrderPage() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-8 md:flex">
-            <Link href="/#menu" className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
+            <a href="/#menu" className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
               熱銷商品
-            </Link>
-            <Link href="/#how" className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
+            </a>
+            <a href="/#how" className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
               訂購方式
-            </Link>
-            <Link href="/#reviews" className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
+            </a>
+            <a href="/#reviews" className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
               顧客好評
-            </Link>
+            </a>
             <Button
               className="relative h-9 rounded-full bg-[var(--wood)] px-6 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]"
               onClick={() => setIsCartOpen(true)}
@@ -74,9 +74,9 @@ export function OrderPage() {
 
         {isMenuOpen && (
           <nav className="grid gap-4 border-t border-[var(--line)]/70 bg-[rgba(253,250,244,0.82)] px-5 py-5 backdrop-blur-xl md:hidden">
-            <Link href="/#menu" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>熱銷商品</Link>
-            <Link href="/#how" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>訂購方式</Link>
-            <Link href="/#reviews" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>顧客好評</Link>
+            <a href="/#menu" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>熱銷商品</a>
+            <a href="/#how" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>訂購方式</a>
+            <a href="/#reviews" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>顧客好評</a>
           </nav>
         )}
       </header>

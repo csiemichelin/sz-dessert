@@ -216,10 +216,10 @@ export function Header() {
             顧客好評
           </Link>
           <Button asChild className="h-9 rounded-full bg-[var(--wood)] px-6 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]">
-            <Link href="/order">
+            <a href="/order">
               <ShoppingBag className="size-4" />
               立即訂購
-            </Link>
+            </a>
           </Button>
         </nav>
 
@@ -234,7 +234,7 @@ export function Header() {
           <Link href="#how" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>訂購方式</Link>
           <Link href="#reviews" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>顧客好評</Link>
           <Button asChild className="rounded-full bg-[var(--wood)] text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]">
-            <Link href="/order">立即訂購</Link>
+            <a href="/order">立即訂購</a>
           </Button>
         </nav>
       )}
@@ -281,10 +281,10 @@ export function HeroSection() {
               size={null}
               className="toast-cta-button h-9 rounded-full bg-[var(--wood)] px-5 py-0 text-xs font-bold leading-none text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base lg:h-10 lg:px-9 lg:text-sm xl:h-11 xl:px-11 xl:text-sm 2xl:h-12 2xl:px-12 2xl:text-base 3xl:h-14 3xl:px-14 3xl:text-base"
             >
-              <Link href="/order">
+              <a href="/order">
                 <ShoppingBag className="size-4 lg:size-5" />
                 立即訂購
-              </Link>
+              </a>
             </Button>
           </div>
         </div>
@@ -516,7 +516,7 @@ export function MenuSection() {
             {active.items.map((item, index) => {
               const rank = rankStyles[index]
               return (
-                <Link
+                <a
                   href="/order"
                   key={item.name}
                   className="group relative mx-auto w-full max-w-[360px] rounded-[28px] border border-white/80 bg-white p-3 shadow-[0_16px_40px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_58px_rgba(75,61,45,0.14)] active:-translate-y-1 active:shadow-[0_24px_58px_rgba(75,61,45,0.14)] md:max-w-[320px] md:p-4 lg:max-w-none"
@@ -561,16 +561,16 @@ export function MenuSection() {
                       <span className="text-xl font-black text-[var(--wood)]">{item.price}</span>
                     </div>
                   </div>
-                </Link>
+                </a>
               )
             })}
           </div>
           <div className="mx-auto mt-6 flex w-full max-w-[360px] justify-center md:max-w-none">
             <Button asChild className="h-11 rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]">
-              <Link href="/order">
+              <a href="/order">
                 <ShoppingBag className="size-4" />
                 前往訂購
-              </Link>
+              </a>
             </Button>
           </div>
         </div>
@@ -597,10 +597,10 @@ export function ContactSection() {
           />
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button asChild className="rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]">
-              <Link href="/order">
+              <a href="/order">
                 <ShoppingBag className="size-4" />
                 立即訂購
-              </Link>
+              </a>
             </Button>
           </div>
           <div className="mt-4 flex flex-wrap gap-3">

@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-TW" className="bg-background">
+    <html lang="zh-TW" className="bg-background" suppressHydrationWarning>
       <body suppressHydrationWarning className={`${notoSansTC.variable} font-sans antialiased`}>
         <CartProvider>
           {children}
