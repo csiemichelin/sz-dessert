@@ -244,8 +244,8 @@ export function Header() {
 
 export function HeroSection() {
   return (
-    <section className="relative flex-1 overflow-hidden sm:flex-none 2xl:min-h-0 2xl:flex-1">
-      <div className="relative h-full w-full sm:h-auto sm:aspect-[1536/1757] lg:aspect-[2480/960] 2xl:h-full 2xl:aspect-auto">
+    <section className="relative flex-1 overflow-hidden sm:flex-none min-[2000px]:!min-h-0 min-[2000px]:!flex-1">
+      <div className="relative h-full w-full sm:h-auto sm:aspect-[1536/1757] lg:aspect-[2480/960] min-[2000px]:!h-full min-[2000px]:!aspect-auto">
         <Image
           src="/images/banner_dessert_m.png"
           alt="萱仔甜點首頁 Banner"
