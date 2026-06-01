@@ -3,12 +3,19 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Menu, ShoppingCart, X } from "lucide-react"
+import { Coffee, Cookie, Gift, Menu, ShoppingCart, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/lib/cart-context"
 import { products, categories } from "@/lib/products"
 import { ProductCard, FloatingCartButton } from "@/components/product-card"
 import { CartSidebar } from "@/components/cart-sidebar"
+import { Footer } from "@/components/sections"
+
+const categoryIcons = {
+  cookies: Cookie,
+  drinks: Coffee,
+  "gift-box": Gift,
+}
 
 export function OrderPage() {
   const [activeCategory, setActiveCategory] = useState<string>("cookies")
@@ -76,58 +83,61 @@ export function OrderPage() {
       </header>
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-primary/10 to-background py-12">
-        <div className="container mx-auto px-4 text-center">
+      <section className="wood-grain-light wood-grain-c wood-grain-faded bg-[var(--light-wood)] px-5 py-12 md:px-16 lg:px-5">
+        <div className="mx-auto max-w-6xl text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">立即訂購</h1>
           <p className="text-muted-foreground max-w-md mx-auto">
-            選擇您喜歡的甜點，我們會用心為您製作
+            挑選喜愛的甜點，讓幸福從第一口開始
           </p>
+          <div className="mx-auto mt-6 flex w-full max-w-[360px] flex-wrap justify-center gap-3 md:max-w-none">
+            {categories.map((category) => {
+              const Icon = categoryIcons[category.id]
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  aria-pressed={activeCategory === category.id}
+                  className={`inline-flex flex-shrink-0 items-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition ${
+                    activeCategory === category.id
+                      ? "bg-[var(--wood)] text-white"
+                      : "bg-[var(--cream)] text-[var(--ink)] hover:bg-[var(--soft-pink)] active:bg-[var(--soft-pink)]"
+                  }`}
+                  onClick={() => setActiveCategory(category.id)}
+                >
+                  <Icon className="size-4" />
+                  {category.name}
+                </button>
+              )
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Category Tabs */}
-      <div className="sticky top-16 z-30 bg-background border-b border-border">
-        <div className="container mx-auto px-4">
-          <div className="flex gap-2 py-4 overflow-x-auto scrollbar-hide">
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                variant={activeCategory === category.id ? "default" : "outline"}
-                className={`flex-shrink-0 ${
-                  activeCategory === category.id
-                    ? "bg-primary text-primary-foreground"
-                    : ""
-                }`}
-                onClick={() => setActiveCategory(category.id)}
-              >
-                <span className="mr-2">{category.icon}</span>
-                {category.name}
-              </Button>
+      <section className="relative overflow-hidden bg-white px-5 py-20 md:px-16 lg:px-5">
+        <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
+
+        {/* Products Grid */}
+        <main className="relative mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* Products Grid */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-
-        {filteredProducts.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">此分類目前沒有商品</p>
-          </div>
-        )}
-      </main>
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">此分類目前沒有商品</p>
+            </div>
+          )}
+        </main>
+      </section>
 
       {/* Floating Cart Button */}
       <FloatingCartButton />
 
       {/* Cart Sidebar */}
       <CartSidebar />
+      <Footer />
     </div>
   )
 }
