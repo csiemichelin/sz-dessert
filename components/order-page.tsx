@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ShoppingBag, Menu, X } from "lucide-react"
+import { Menu, ShoppingCart, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/lib/cart-context"
 import { products, categories } from "@/lib/products"
@@ -42,7 +42,7 @@ export function OrderPage() {
               className="relative h-9 rounded-full bg-[var(--wood)] px-6 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]"
               onClick={() => setIsCartOpen(true)}
             >
-              <ShoppingBag className="size-4" />
+              <ShoppingCart className="size-4" />
               購物車
               {totalItems > 0 && (
                 <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--brand-pink)] text-xs font-bold text-white">
@@ -53,19 +53,6 @@ export function OrderPage() {
           </nav>
 
           <div className="flex items-center gap-2 md:hidden">
-            <Button
-              className="relative rounded-full bg-[var(--wood)] px-4 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]"
-              onClick={() => setIsCartOpen(true)}
-            >
-              <ShoppingBag className="size-4" />
-              {totalItems > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--brand-pink)] text-xs font-bold text-white">
-                  {totalItems}
-                </span>
-              )}
-              <span className="ml-2 hidden sm:inline">購物車</span>
-            </Button>
-
             <button className="rounded-full p-2 text-[var(--ink)] transition hover:bg-[var(--soft-pink)] active:bg-[var(--soft-pink)]" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
               {isMenuOpen ? <X /> : <Menu />}
             </button>

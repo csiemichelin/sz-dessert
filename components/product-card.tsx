@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { Plus, Minus, ShoppingBag } from "lucide-react"
+import { Plus, Minus, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -82,18 +82,19 @@ export function ProductCard({ product }: ProductCardProps) {
 export function FloatingCartButton() {
   const { totalItems, setIsCartOpen } = useCart()
 
-  if (totalItems === 0) return null
-
   return (
     <Button
       onClick={() => setIsCartOpen(true)}
-      className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl"
+      className="floating-cart-wiggle fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-[var(--wood)] text-white shadow-[0_16px_36px_rgba(75,61,45,0.24)] hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)] md:hidden"
       size="icon"
+      aria-label="開啟購物車"
     >
-      <ShoppingBag className="w-6 h-6" />
-      <span className="absolute -top-1 -right-1 h-6 w-6 rounded-full bg-accent text-accent-foreground text-sm font-bold flex items-center justify-center">
-        {totalItems}
-      </span>
+      <ShoppingCart className="size-6" />
+      {totalItems > 0 && (
+        <span className="absolute -right-1 -top-1 flex h-6 min-w-6 items-center justify-center rounded-full bg-[var(--brand-pink)] px-1.5 text-sm font-bold text-white shadow-[0_6px_14px_rgba(217,138,158,0.28)]">
+          {totalItems}
+        </span>
+      )}
     </Button>
   )
 }
