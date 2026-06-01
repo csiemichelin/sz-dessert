@@ -206,16 +206,16 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          <Link href="#menu" className="text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand-pink)]">
+          <Link href="#menu" className="text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
             熱銷商品
           </Link>
-          <Link href="#how" className="text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand-pink)]">
+          <Link href="#how" className="text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
             訂購方式
           </Link>
-          <Link href="#reviews" className="text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand-pink)]">
+          <Link href="#reviews" className="text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]">
             顧客好評
           </Link>
-          <Button asChild className="h-9 rounded-full bg-[var(--wood)] px-6 text-white hover:bg-[var(--wood-dark)]">
+          <Button asChild className="h-9 rounded-full bg-[var(--wood)] px-6 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]">
             <Link href="/order">
               <ShoppingBag className="size-4" />
               立即訂購
@@ -230,10 +230,10 @@ export function Header() {
 
       {isMenuOpen && (
         <nav className="grid gap-4 border-t border-[var(--line)]/70 bg-[rgba(253,250,244,0.82)] px-5 py-5 backdrop-blur-xl md:hidden">
-          <Link href="#menu" onClick={() => setIsMenuOpen(false)}>熱銷商品</Link>
-          <Link href="#how" onClick={() => setIsMenuOpen(false)}>訂購方式</Link>
-          <Link href="#reviews" onClick={() => setIsMenuOpen(false)}>顧客好評</Link>
-          <Button asChild className="rounded-full bg-[var(--wood)] text-white hover:bg-[var(--wood-dark)]">
+          <Link href="#menu" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>熱銷商品</Link>
+          <Link href="#how" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>訂購方式</Link>
+          <Link href="#reviews" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>顧客好評</Link>
+          <Button asChild className="rounded-full bg-[var(--wood)] text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]">
             <Link href="/order">立即訂購</Link>
           </Button>
         </nav>
@@ -244,8 +244,8 @@ export function Header() {
 
 export function HeroSection() {
   return (
-    <section className="relative flex-1 overflow-hidden sm:flex-none min-[2000px]:!min-h-0 min-[2000px]:!flex-1">
-      <div className="relative h-full w-full sm:h-auto sm:aspect-[1536/1757] lg:aspect-[2480/960] min-[2000px]:!h-full min-[2000px]:!aspect-auto">
+    <section className="relative min-h-0 flex-1 overflow-hidden sm:flex-1 lg:flex-none min-[2000px]:!min-h-0 min-[2000px]:!flex-1">
+      <div className="relative h-full w-full sm:h-full sm:aspect-auto lg:h-auto lg:aspect-[2480/960] min-[2000px]:!h-full min-[2000px]:!aspect-auto">
         <Image
           src="/images/banner_dessert_m.png"
           alt="萱仔甜點首頁 Banner"
@@ -279,7 +279,7 @@ export function HeroSection() {
             <Button
               asChild
               size={null}
-              className="toast-cta-button h-9 rounded-full bg-[var(--wood)] px-5 py-0 text-xs font-bold leading-none text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base lg:h-10 lg:px-9 lg:text-sm xl:h-11 xl:px-11 xl:text-sm 2xl:h-12 2xl:px-12 2xl:text-base 3xl:h-14 3xl:px-14 3xl:text-base"
+              className="toast-cta-button h-9 rounded-full bg-[var(--wood)] px-5 py-0 text-xs font-bold leading-none text-white shadow-[0_12px_26px_rgba(75,61,45,0.22)] hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)] sm:h-12 sm:px-9 sm:text-base lg:h-10 lg:px-9 lg:text-sm xl:h-11 xl:px-11 xl:text-sm 2xl:h-12 2xl:px-12 2xl:text-base 3xl:h-14 3xl:px-14 3xl:text-base"
             >
               <Link href="/order">
                 <ShoppingBag className="size-4 lg:size-5" />
@@ -502,7 +502,7 @@ export function MenuSection() {
                   className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition ${
                     activeCategory === index
                       ? "bg-[var(--wood)] text-white"
-                      : "bg-[var(--cream)] text-[var(--ink)] hover:bg-[var(--soft-pink)]"
+                      : "bg-[var(--cream)] text-[var(--ink)] hover:bg-[var(--soft-pink)] active:bg-[var(--soft-pink)]"
                   }`}
                 >
                   <Icon className="size-4" />
@@ -519,7 +519,7 @@ export function MenuSection() {
                 <Link
                   href="/order"
                   key={item.name}
-                  className="group relative mx-auto w-full max-w-[360px] rounded-[28px] border border-white/80 bg-white p-3 shadow-[0_16px_40px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_58px_rgba(75,61,45,0.14)] md:max-w-[320px] md:p-4 lg:max-w-none"
+                  className="group relative mx-auto w-full max-w-[360px] rounded-[28px] border border-white/80 bg-white p-3 shadow-[0_16px_40px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_58px_rgba(75,61,45,0.14)] active:-translate-y-1 active:shadow-[0_24px_58px_rgba(75,61,45,0.14)] md:max-w-[320px] md:p-4 lg:max-w-none"
                 >
                   <div className={`pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 ${rank.gradient}`} />
                   {/* <div className="pointer-events-none absolute -right-2 -top-2 z-10 h-[148px] w-[148px] overflow-hidden">
@@ -549,7 +549,7 @@ export function MenuSection() {
                     />
                   )}
                   <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-[22px] bg-[var(--cream)]">
-                    <Image src={item.image} alt={item.name} fill className="object-cover transition duration-500 group-hover:scale-105" />
+                    <Image src={item.image} alt={item.name} fill className="object-cover transition duration-500 group-hover:scale-105 group-active:scale-105" />
                     <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(40,32,24,0.34)] to-transparent" />
                   </div>
                   <div className="relative flex min-h-[132px] flex-col">
@@ -566,7 +566,7 @@ export function MenuSection() {
             })}
           </div>
           <div className="mx-auto mt-6 flex w-full max-w-[360px] justify-center md:max-w-none">
-            <Button asChild className="h-11 rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)]">
+            <Button asChild className="h-11 rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]">
               <Link href="/order">
                 <ShoppingBag className="size-4" />
                 前往訂購
@@ -596,7 +596,7 @@ export function ContactSection() {
             description="請依取餐時間到店報取餐號碼即可，無需提早到。最新品項與限定口味請參考 Instagram"
           />
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <Button asChild className="rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)]">
+            <Button asChild className="rounded-full bg-[var(--wood)] px-7 text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]">
               <Link href="/order">
                 <ShoppingBag className="size-4" />
                 立即訂購
@@ -604,13 +604,13 @@ export function ContactSection() {
             </Button>
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
-            <a href="https://www.instagram.com/s.z_dessert" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="block transition hover:-translate-y-0.5">
+            <a href="https://www.instagram.com/s.z_dessert" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="block transition hover:-translate-y-0.5 active:-translate-y-0.5">
               <Image src="/images/icons/ig.png" alt="" width={42} height={42} className="size-10 rounded-full object-cover drop-shadow-[0_8px_18px_rgba(75,61,45,0.14)]" />
             </a>
-            <a href="https://line.me/R/ti/p/@kek5408f" target="_blank" rel="noopener noreferrer" aria-label="LINE" className="block transition hover:-translate-y-0.5">
+            <a href="https://line.me/R/ti/p/@kek5408f" target="_blank" rel="noopener noreferrer" aria-label="LINE" className="block transition hover:-translate-y-0.5 active:-translate-y-0.5">
               <Image src="/images/icons/line.png" alt="" width={42} height={42} className="size-10 rounded-full object-cover drop-shadow-[0_8px_18px_rgba(75,61,45,0.14)]" />
             </a>
-            <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fkek5408f%2F%3Flocale%3Dzh_TW" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="block transition hover:-translate-y-0.5">
+            <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fkek5408f%2F%3Flocale%3Dzh_TW" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="block transition hover:-translate-y-0.5 active:-translate-y-0.5">
               <Image src="/images/icons/fb.png" alt="" width={42} height={42} className="size-10 rounded-full object-cover drop-shadow-[0_8px_18px_rgba(75,61,45,0.14)]" />
             </a>
           </div>
@@ -826,9 +826,9 @@ export function ReviewsSection() {
             aria-label="前一頁"
             disabled={page <= 1 || isLoading}
             onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-            className="group flex size-14 items-center justify-center rounded-full border border-[var(--line)] bg-white shadow-[0_8px_24px_rgba(75,61,45,0.10)] transition hover:border-[var(--wood)] hover:bg-[var(--wood)] disabled:cursor-not-allowed disabled:opacity-40"
+            className="group flex size-14 items-center justify-center rounded-full border border-[var(--line)] bg-white shadow-[0_8px_24px_rgba(75,61,45,0.10)] transition hover:border-[var(--wood)] hover:bg-[var(--wood)] active:border-[var(--wood)] active:bg-[var(--wood)] disabled:cursor-not-allowed disabled:opacity-40"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition group-hover:text-white text-[var(--ink)]">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--ink)] transition group-hover:text-white group-active:text-white">
               <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
@@ -837,9 +837,9 @@ export function ReviewsSection() {
             aria-label="下一頁"
             disabled={page >= totalPages || isLoading}
             onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
-            className="group flex size-14 items-center justify-center rounded-full border border-[var(--line)] bg-white shadow-[0_8px_24px_rgba(75,61,45,0.10)] transition hover:border-[var(--wood)] hover:bg-[var(--wood)] disabled:cursor-not-allowed disabled:opacity-40"
+            className="group flex size-14 items-center justify-center rounded-full border border-[var(--line)] bg-white shadow-[0_8px_24px_rgba(75,61,45,0.10)] transition hover:border-[var(--wood)] hover:bg-[var(--wood)] active:border-[var(--wood)] active:bg-[var(--wood)] disabled:cursor-not-allowed disabled:opacity-40"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition group-hover:text-white text-[var(--ink)]">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--ink)] transition group-hover:text-white group-active:text-white">
               <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
