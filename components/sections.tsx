@@ -229,13 +229,20 @@ export function Header() {
       </div>
 
       {isMenuOpen && (
-        <nav className="grid gap-4 border-t border-[var(--line)]/70 bg-[rgba(253,250,244,0.82)] px-5 py-5 backdrop-blur-xl md:hidden">
+        <nav className="relative grid gap-4 overflow-hidden border-t border-[var(--line)]/70 bg-[rgba(253,250,244,0.82)] px-5 pb-8 pt-5 backdrop-blur-xl md:hidden">
           <Link href="#menu" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>熱銷商品</Link>
           <Link href="#how" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>訂購方式</Link>
           <Link href="#reviews" className="transition hover:text-[var(--brand-pink)] active:text-[var(--brand-pink)]" onClick={() => setIsMenuOpen(false)}>顧客好評</Link>
           <Button asChild className="rounded-full bg-[var(--wood)] text-white hover:bg-[var(--wood-dark)] active:bg-[var(--wood-dark)]">
             <a href="/order">立即訂購</a>
           </Button>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2.5 border-t border-[var(--wood)]/24 bg-gradient-to-r from-[var(--wood)]/50 via-[var(--wood)]/78 to-[var(--wood)]/50 shadow-[0_-8px_18px_rgba(117,88,58,0.08)]">
+            <span className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+            <span className="absolute inset-x-14 top-1.5 h-px bg-gradient-to-r from-transparent via-[var(--cream)]/45 to-transparent" />
+            <span className="absolute left-1/2 top-0.5 h-1 w-12 -translate-x-1/2 rounded-full bg-[var(--cream)]/72 shadow-[0_0_0_1px_rgba(117,88,58,0.16)]" />
+            <span className="absolute left-8 top-1.5 h-px w-10 bg-gradient-to-r from-transparent to-white/55" />
+            <span className="absolute right-8 top-1.5 h-px w-10 bg-gradient-to-l from-transparent to-white/55" />
+          </div>
         </nav>
       )}
     </header>
