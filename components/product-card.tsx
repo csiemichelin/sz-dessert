@@ -1,10 +1,16 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
-import { Plus, Minus, ShoppingCart } from "lucide-react"
+import { ShoppingCart, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { useCart } from "@/lib/cart-context"
 import type { Product } from "@/lib/products"
 
@@ -13,69 +19,82 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { items, addItem, updateQuantity } = useCart()
-  const cartItem = items.find((item) => item.product.id === product.id)
-  const quantity = cartItem?.quantity || 0
+  const [isOpen, setIsOpen] = useState(false)
+  const { addItem } = useCart()
 
   return (
-    <Card className="group overflow-hidden border-border/50 bg-card transition-all hover:shadow-lg hover:border-primary/30">
-      <div className="relative aspect-square overflow-hidden">
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        {product.badge && (
-          <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground">
-            {product.badge}
-          </Badge>
-        )}
-      </div>
-      <CardContent className="p-4">
-        <div className="mb-2">
-          <h3 className="font-semibold text-foreground text-lg">{product.name}</h3>
-          <p className="font-peak text-sm text-muted-foreground line-clamp-2 mt-1">
-            {product.description}
-          </p>
-        </div>
-        <div className="flex items-center justify-between mt-4">
-          <span className="text-xl font-bold text-primary">
-            NT${product.price}
+    <>
+      <button
+        type="button"
+        onClick={() => setIsOpen(true)}
+        className="group flex min-h-24 w-full items-center justify-between gap-2 bg-white/82 px-3 py-3 text-left transition hover:bg-[var(--cream)]/70 active:bg-[var(--cream)]/70 md:gap-3 md:px-4 md:py-4"
+      >
+        <span className="flex min-w-0 flex-1 items-center gap-2.5 md:gap-3">
+          <span className="relative size-16 shrink-0 overflow-hidden rounded-[6px] bg-[var(--cream)] md:size-20">
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover transition duration-300 group-hover:scale-105 group-active:scale-105"
+            />
           </span>
-          {quantity === 0 ? (
+          <span className="min-w-0 flex-1">
+            <span className="flex items-center justify-between gap-3">
+              <span className="min-w-0 text-base font-black leading-6 text-[var(--ink)]">{product.name}</span>
+              <span className="shrink-0 text-base font-black text-[var(--wood)]">NT${product.price}</span>
+            </span>
+            <span className="font-peak mt-2 block text-sm leading-6 text-[var(--muted-text)]">
+              {product.description}
+            </span>
+          </span>
+        </span>
+      </button>
+
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent
+          showCloseButton={false}
+          className="max-h-[calc(100dvh-2rem)] max-w-[420px] gap-0 overflow-y-auto rounded-[8px] border border-[var(--line)] bg-[var(--cream)] p-0 shadow-[0_24px_70px_rgba(75,61,45,0.22)]"
+        >
+          <div className="relative px-5 pb-5 pt-6 text-center">
+            <DialogTitle className="text-2xl font-black tracking-[0.08em] text-[var(--wood-dark)]">
+              {product.name}
+            </DialogTitle>
+            <DialogDescription className="sr-only">
+              {product.name} 商品圖片與加入購物車
+            </DialogDescription>
+            <p className="font-peak mx-auto mt-3 max-w-[18rem] text-base leading-7 text-[var(--muted-text)]">
+              {product.description}
+            </p>
+            <DialogClose className="absolute right-3 top-3 flex size-10 items-center justify-center rounded-full text-[var(--muted-text)] shadow-[0_4px_14px_rgba(75,61,45,0.12)] transition hover:bg-[var(--soft-pink)] hover:text-[var(--ink)] active:bg-[var(--soft-pink)]">
+              <X className="size-5" />
+              <span className="sr-only">關閉</span>
+            </DialogClose>
+          </div>
+
+          <div className="px-4">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[4px] bg-white">
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="mt-6 flex items-center justify-between gap-4 border-t border-[var(--line)] px-4 py-4">
+            <span className="text-2xl font-black text-[var(--wood)]">NT${product.price}</span>
             <Button
               onClick={() => addItem(product)}
-              size="sm"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              className="h-11 rounded-[4px] bg-[var(--wood-dark)] px-5 text-white hover:bg-[var(--wood)] active:bg-[var(--wood)]"
             >
-              <Plus className="w-4 h-4 mr-1" />
-              加入
+              <ShoppingCart className="size-4" />
+              加入購物車
             </Button>
-          ) : (
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8"
-                onClick={() => updateQuantity(product.id, quantity - 1)}
-              >
-                <Minus className="w-4 h-4" />
-              </Button>
-              <span className="w-8 text-center font-semibold">{quantity}</span>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8"
-                onClick={() => updateQuantity(product.id, quantity + 1)}
-              >
-                <Plus className="w-4 h-4" />
-              </Button>
-            </div>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   )
 }
 
