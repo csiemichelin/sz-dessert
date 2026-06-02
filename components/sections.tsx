@@ -267,7 +267,7 @@ export function HeroSection() {
           fill
           sizes="100vw"
           priority
-          className="object-cover object-center block sm:hidden"
+          className="object-cover object-[40%_center] block sm:hidden"
         />
         <Image
           src="/images/banner_dessert_l.png"
@@ -380,7 +380,7 @@ export function HeroWoodSection() {
   const activeNews = pages[activePage] ?? pages[0] ?? []
 
   return (
-    <section className="h-44 flex-shrink-0 sm:h-43">
+    <section className="h-40 flex-shrink-0 sm:h-43">
       <div className="relative h-full w-full overflow-hidden border-[4px] sm:border-[8px] border-[var(--light-wood)] bg-[var(--light-wood)]">
         <img
           src="/images/hero_wood_section_l.png"
