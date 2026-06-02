@@ -52,7 +52,7 @@ export function CartSidebar() {
             <ScrollArea className="flex-1">
               <div>
                 {items.map((item) => (
-                  <div key={item.product.id} className="grid grid-cols-[76px_1fr_auto] items-start gap-3 border-b border-[var(--line)]/70 bg-white/34 px-4 py-4">
+                  <div key={item.product.id} className="grid grid-cols-[76px_minmax(0,1fr)] items-center gap-3 border-b border-[var(--line)]/70 bg-white/34 px-4 py-4">
                     <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-[4px] bg-white">
                       <Image
                         src={item.product.image}
@@ -63,7 +63,8 @@ export function CartSidebar() {
                     </div>
                     <div className="min-w-0">
                       <h4 className="truncate text-base font-black text-[var(--ink)]">{item.product.name}</h4>
-                      <div className="mt-7 flex items-center gap-3">
+                      <div className="mt-2 flex items-center gap-2">
+                        <p className="mr-auto text-xs font-medium tracking-[0.08em] text-[var(--muted-text)]">NT${item.product.price}</p>
                         <Button
                           variant="outline"
                           size="icon"
@@ -81,18 +82,15 @@ export function CartSidebar() {
                         >
                           <Plus className="size-3" />
                         </Button>
+                        <button
+                          type="button"
+                          aria-label={`移除 ${item.product.name}`}
+                          className="text-red-500 transition hover:text-red-600 active:text-red-600"
+                          onClick={() => removeItem(item.product.id)}
+                        >
+                          <Trash2 className="size-4" />
+                        </button>
                       </div>
-                    </div>
-                    <div className="flex min-h-16 flex-col items-end justify-between">
-                      <p className="text-xs font-medium text-[var(--muted-text)]">NT${item.product.price}</p>
-                      <button
-                        type="button"
-                        aria-label={`移除 ${item.product.name}`}
-                        className="text-red-500 transition hover:text-red-600 active:text-red-600"
-                        onClick={() => removeItem(item.product.id)}
-                      >
-                        <Trash2 className="size-4" />
-                      </button>
                     </div>
                   </div>
                 ))}
