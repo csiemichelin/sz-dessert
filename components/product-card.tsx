@@ -27,10 +27,10 @@ export function ProductCard({ product }: ProductCardProps) {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="group flex min-h-24 w-full items-center justify-between gap-2 bg-white/82 px-3 py-3 text-left transition hover:bg-[var(--cream)]/70 active:bg-[var(--cream)]/70 md:gap-3 md:px-4 md:py-4"
+        className="group relative z-10 -my-2 flex min-h-24 w-full items-center justify-between gap-2 bg-white/82 px-3 py-5 text-left transition hover:bg-[var(--cream)]/70 active:bg-[var(--cream)]/70 md:gap-3 md:px-4 md:py-3 lg:min-h-32 lg:px-7 lg:py-3"
       >
-        <span className="flex min-w-0 flex-1 items-center gap-2.5 md:gap-3">
-          <span className="relative size-16 shrink-0 overflow-hidden rounded-[6px] bg-[var(--cream)] md:size-20">
+        <span className="flex min-w-0 flex-1 items-center gap-2.5 md:gap-3 lg:gap-5">
+          <span className="relative size-16 shrink-0 overflow-hidden rounded-[6px] bg-[var(--cream)] md:size-20 lg:size-28 lg:rounded-[8px]">
             <Image
               src={product.image}
               alt={product.name}
@@ -40,10 +40,10 @@ export function ProductCard({ product }: ProductCardProps) {
           </span>
           <span className="min-w-0 flex-1">
             <span className="flex items-center justify-between gap-3">
-              <span className="min-w-0 text-base font-black leading-6 text-[var(--ink)]">{product.name}</span>
-              <span className="shrink-0 text-base font-black text-[var(--wood)]">NT${product.price}</span>
+              <span className="min-w-0 text-base font-black leading-6 text-[var(--ink)] lg:text-xl lg:leading-7">{product.name}</span>
+              <span className="shrink-0 text-base font-black text-[var(--wood)] lg:text-xl">NT${product.price}</span>
             </span>
-            <span className="font-peak mt-2 block text-sm leading-6 text-[var(--muted-text)]">
+            <span className="font-peak mt-2 block text-sm leading-6 text-[var(--muted-text)] lg:mt-3 lg:text-base lg:leading-7">
               {product.description}
             </span>
           </span>

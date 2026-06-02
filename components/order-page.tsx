@@ -127,15 +127,17 @@ export function OrderPage() {
         <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
 
         {/* Products Grid */}
-        <main className="relative mx-auto max-w-3xl">
-          <div className="grid grid-cols-1 bg-white/82 md:overflow-hidden md:rounded-[8px] md:border md:border-[var(--line)]">
+        <main className="relative mx-auto max-w-3xl lg:max-w-4xl">
+          <div className="grid grid-cols-1 bg-white/82 md:overflow-hidden md:rounded-[8px] md:border md:border-[var(--line)] md:py-5 lg:py-7">
             {filteredProducts.map((product, index) => (
               <div key={product.id}>
                 <ProductCard product={product} />
                 {index < filteredProducts.length - 1 && (
-                  <div aria-hidden="true" className="flex items-center gap-3 py-1">
+                  <div aria-hidden="true" className="relative z-20 flex items-center gap-3 py-1 md:py-0">
                     <span className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--wood)]/30 to-[var(--wood)]/55" />
-                    <ActiveCategoryIcon className="size-4 shrink-0 text-[var(--wood)]/70" />
+                    <span className="relative z-30 flex size-7 shrink-0 items-center justify-center rounded-full bg-white/58 text-[var(--wood)] backdrop-blur-[1px] shadow-[0_0_0_2px_rgba(255,255,255,0.32)]">
+                      <ActiveCategoryIcon className="size-4" />
+                    </span>
                     <span className="h-px flex-1 bg-gradient-to-r from-[var(--wood)]/55 via-[var(--wood)]/30 to-transparent" />
                   </div>
                 )}
