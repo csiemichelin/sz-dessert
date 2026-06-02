@@ -35,7 +35,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <CardContent className="p-4">
         <div className="mb-2">
           <h3 className="font-semibold text-foreground text-lg">{product.name}</h3>
-          <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+          <p className="font-peak text-sm text-muted-foreground line-clamp-2 mt-1">
             {product.description}
           </p>
         </div>

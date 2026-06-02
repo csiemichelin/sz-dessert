@@ -95,7 +95,7 @@ export function OrderPage() {
       <section className="wood-grain-light wood-grain-c wood-grain-faded bg-[var(--light-wood)] px-5 py-12 md:px-16 lg:px-5">
         <div className="mx-auto max-w-6xl text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">立即訂購</h1>
-          <p className="text-muted-foreground max-w-md mx-auto">
+          <p className="font-peak text-muted-foreground max-w-md mx-auto">
             挑選喜愛的甜點，讓幸福從第一口開始
           </p>
           <div className="mx-auto mt-6 flex w-full max-w-[360px] flex-wrap justify-center gap-3 md:max-w-none">
@@ -135,7 +135,7 @@ export function OrderPage() {
 
           {filteredProducts.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">此分類目前沒有商品</p>
+              <p className="font-peak text-muted-foreground">此分類目前沒有商品</p>
             </div>
           )}
         </main>

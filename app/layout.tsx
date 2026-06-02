@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Noto_Sans_TC } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -9,6 +10,10 @@ const notoSansTC = Noto_Sans_TC({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
   variable: "--font-noto-sans-tc"
+});
+const peakFont = localFont({
+  src: "../public/fonts/ThePeakFontBeta_V0_102.ttf",
+  variable: "--font-peak",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-TW" className="bg-background" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${notoSansTC.variable} font-sans antialiased`}>
+      <body suppressHydrationWarning className={`${notoSansTC.variable} ${peakFont.variable} font-sans antialiased`}>
         <CartProvider>
           {children}
         </CartProvider>

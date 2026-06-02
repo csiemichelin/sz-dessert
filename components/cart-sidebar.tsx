@@ -20,21 +20,21 @@ export function CartSidebar() {
             購物車
           </SheetTitle>
         </SheetHeader>
-        <div className="flex items-start justify-between px-4 pb-8 pt-5">
-          <div>
-            <h2 className="font-serif text-2xl font-black tracking-[0.08em] text-[var(--wood-dark)]">購物車</h2>
-            <p className="mt-3 text-sm tracking-[0.16em] text-[var(--muted-text)]">
-              你的購物車中共有 {totalItems} 件品項
-            </p>
+        <div className="px-4 pb-2 pt-5">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-black tracking-[0.08em] text-[var(--wood-dark)]">購物車</h2>
+            <button
+              type="button"
+              aria-label="關閉購物車"
+              onClick={() => setIsCartOpen(false)}
+              className="flex size-11 shrink-0 items-center justify-center rounded-full text-[var(--muted-text)] transition hover:bg-[var(--soft-pink)] hover:text-[var(--ink)] active:bg-[var(--soft-pink)]"
+            >
+              <X className="size-5" />
+            </button>
           </div>
-          <button
-            type="button"
-            aria-label="關閉購物車"
-            onClick={() => setIsCartOpen(false)}
-            className="flex size-11 shrink-0 items-center justify-center rounded-full text-[var(--muted-text)] transition hover:bg-[var(--soft-pink)] hover:text-[var(--ink)] active:bg-[var(--soft-pink)]"
-          >
-            <X className="size-5" />
-          </button>
+          <p className="font-peak mt-3 text-sm tracking-[0.16em] text-[var(--muted-text)]">
+            你的購物車中共有 {totalItems} 件商品
+          </p>
         </div>
         
         {items.length === 0 ? (
@@ -42,7 +42,7 @@ export function CartSidebar() {
             <div className="mb-4 flex size-20 items-center justify-center rounded-full bg-white/72">
               <ShoppingBag className="size-10 text-[var(--muted-text)]" />
             </div>
-            <p className="mb-4 text-[var(--muted-text)]">購物車是空的</p>
+            <p className="font-peak mb-4 text-[var(--muted-text)]">購物車是空的</p>
             <Button onClick={() => setIsCartOpen(false)} variant="outline" className="rounded-[4px]">
               繼續購物
             </Button>
@@ -52,7 +52,7 @@ export function CartSidebar() {
             <ScrollArea className="flex-1">
               <div>
                 {items.map((item) => (
-                  <div key={item.product.id} className="grid grid-cols-[76px_minmax(0,1fr)] items-center gap-3 border-b border-[var(--line)]/70 bg-white/34 px-4 py-4">
+                  <div key={item.product.id} className="grid grid-cols-[76px_minmax(0,1fr)] items-center gap-2 border-b border-[var(--line)]/70 bg-white/34 px-4 py-4">
                     <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-[4px] bg-white">
                       <Image
                         src={item.product.image}
@@ -64,7 +64,7 @@ export function CartSidebar() {
                     <div className="min-w-0">
                       <h4 className="truncate text-base font-black text-[var(--ink)]">{item.product.name}</h4>
                       <div className="mt-2 flex items-center gap-2">
-                        <p className="mr-auto text-xs font-medium tracking-[0.08em] text-[var(--muted-text)]">NT${item.product.price}</p>
+                        <p className="mr-auto text-base font-black text-[var(--wood)]">NT${item.product.price}</p>
                         <Button
                           variant="outline"
                           size="icon"
@@ -98,7 +98,7 @@ export function CartSidebar() {
             </ScrollArea>
             
             <div className="border-t border-[var(--line)] bg-[var(--cream)] px-4 py-4">
-              <div className="mb-4 flex items-center justify-between font-serif">
+              <div className="mb-4 flex items-center justify-between">
                 <span className="text-lg font-black text-[var(--ink)]">Total:</span>
                 <span className="text-base font-black text-[var(--wood)]">NT${totalPrice}.00</span>
               </div>

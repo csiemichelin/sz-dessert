@@ -189,7 +189,7 @@ function SectionTitle({
         {eyebrow}
       </p>
       <h2 className="text-4xl font-black leading-tight text-[var(--ink)] md:text-5xl">{title}</h2>
-      {description && <p className="mt-4 leading-7 text-[var(--muted-text)]">{description}</p>}
+      {description && <p className="font-peak mt-4 leading-7 text-[var(--muted-text)]">{description}</p>}
     </div>
   )
 }
@@ -562,7 +562,7 @@ export function MenuSection() {
                   <div className="relative flex min-h-[132px] flex-col">
                     <p className="text-xs font-black uppercase tracking-[0.14em] text-[var(--brand-pink)]">No. {index + 1}</p>
                     <h4 className="mt-2 text-xl font-black leading-tight text-[var(--ink)]">{item.name}</h4>
-                    <p className="mt-2 text-sm leading-6 text-[var(--muted-text)]">{item.note}</p>
+                    <p className="font-peak mt-2 text-sm leading-6 text-[var(--muted-text)]">{item.note}</p>
                     <div className="mt-auto flex items-end justify-between gap-3 pt-5">
                       <span className="rounded-full bg-[var(--cream)] px-3 py-1.5 text-xs font-bold text-[var(--muted-text)]">單品熱銷</span>
                       <span className="text-xl font-black text-[var(--wood)]">{item.price}</span>
@@ -814,7 +814,7 @@ export function ReviewsSection() {
                   <p className="mt-1 text-xs font-semibold text-[var(--muted-text)]">{review.role}</p>
                 </div>
               </div>
-              <p className="min-h-24 text-sm leading-7 text-[var(--ink)]">{review.text}</p>
+              <p className="font-peak min-h-24 text-sm leading-7 text-[var(--ink)]">{review.text}</p>
               <div className="mt-6 flex gap-1">
                 {Array.from({ length: 5 }).map((_, starIndex) => (
                   <Star

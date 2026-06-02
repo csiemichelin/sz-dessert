@@ -171,6 +171,11 @@
     animation: float-card 5.5s ease-in-out infinite;
   }
 
+  .font-peak {
+    font-family: var(--font-peak), var(--font-noto-sans-tc), sans-serif;
+    font-size: 1.08em;
+  }
+
   .terrazzo {
     background-image:
       radial-gradient(circle at 11% 18%, rgba(64, 50, 38, 0.17) 0 3.5px, transparent 4px),

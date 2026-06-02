@@ -86,7 +86,7 @@ export function CheckoutFlow() {
               <Check className="w-8 h-8 text-muted-foreground" />
             </div>
             <h2 className="text-xl font-semibold mb-2">購物車是空的</h2>
-            <p className="text-muted-foreground mb-6">先去逛逛我們的美味甜點吧!</p>
+            <p className="font-peak text-muted-foreground mb-6">先去逛逛我們的美味甜點吧!</p>
             <Button asChild>
               <Link href="/order">開始選購</Link>
             </Button>
@@ -105,40 +105,40 @@ export function CheckoutFlow() {
               <Check className="w-10 h-10 text-green-600" />
             </div>
             <h2 className="text-2xl font-bold mb-2 text-foreground">訂單已送出!</h2>
-            <p className="text-muted-foreground mb-4">感謝您的訂購</p>
+            <p className="font-peak text-muted-foreground mb-4">感謝您的訂購</p>
             <div className="bg-muted/50 rounded-lg p-4 mb-6">
-              <p className="text-sm text-muted-foreground mb-1">訂單編號</p>
+              <p className="font-peak text-sm text-muted-foreground mb-1">訂單編號</p>
               <p className="text-xl font-mono font-bold text-primary">{orderId}</p>
             </div>
             <div className="text-left space-y-3 mb-6 p-4 border border-border rounded-lg">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">取貨日期</span>
+                <span className="font-peak text-muted-foreground">取貨日期</span>
                 <span className="font-medium">{orderInfo.pickupDate && formatDate(orderInfo.pickupDate)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">取貨方式</span>
+                <span className="font-peak text-muted-foreground">取貨方式</span>
                 <span className="font-medium">{orderInfo.deliveryMethod === "pickup" ? "到店自取" : "宅配到府"}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">付款方式</span>
+                <span className="font-peak text-muted-foreground">付款方式</span>
                 <span className="font-medium">{orderInfo.paymentMethod === "transfer" ? "銀行轉帳" : "線上付款"}</span>
               </div>
               <Separator />
               <div className="flex justify-between">
-                <span className="text-muted-foreground">訂單金額</span>
+                <span className="font-peak text-muted-foreground">訂單金額</span>
                 <span className="font-bold text-primary">NT${totalPrice}</span>
               </div>
             </div>
             {orderInfo.paymentMethod === "transfer" && (
               <div className="bg-primary/10 rounded-lg p-4 mb-6 text-left">
                 <p className="font-semibold text-foreground mb-2">匯款資訊</p>
-                <p className="text-sm text-muted-foreground">銀行：國泰世華銀行 (013)</p>
-                <p className="text-sm text-muted-foreground">帳號：123-456789-012345</p>
-                <p className="text-sm text-muted-foreground">戶名：萱仔甜點</p>
-                <p className="text-sm text-primary mt-2">請於 24 小時內完成匯款</p>
+                <p className="font-peak text-sm text-muted-foreground">銀行：國泰世華銀行 (013)</p>
+                <p className="font-peak text-sm text-muted-foreground">帳號：123-456789-012345</p>
+                <p className="font-peak text-sm text-muted-foreground">戶名：萱仔甜點</p>
+                <p className="font-peak text-sm text-primary mt-2">請於 24 小時內完成匯款</p>
               </div>
             )}
-            <p className="text-sm text-muted-foreground mb-6">
+            <p className="font-peak text-sm text-muted-foreground mb-6">
               我們會透過您留下的聯絡方式確認訂單與付款狀態
             </p>
             <Button asChild className="w-full" onClick={() => clearCart()}>
@@ -190,7 +190,7 @@ export function CheckoutFlow() {
                       <step.icon className="w-5 h-5" />
                     )}
                   </div>
-                  <span className={`text-xs mt-1 hidden sm:block ${currentStep >= step.id ? "text-foreground" : "text-muted-foreground"}`}>
+                  <span className={`font-peak text-xs mt-1 hidden sm:block ${currentStep >= step.id ? "text-foreground" : "text-muted-foreground"}`}>
                     {step.name}
                   </span>
                 </div>
@@ -223,7 +223,7 @@ export function CheckoutFlow() {
                     </div>
                     <div className="flex-1">
                       <h4 className="font-medium">{item.product.name}</h4>
-                      <p className="text-sm text-muted-foreground">數量: {item.quantity}</p>
+                      <p className="font-peak text-sm text-muted-foreground">數量: {item.quantity}</p>
                     </div>
                     <div className="text-right">
                       <p className="font-semibold">NT${item.product.price * item.quantity}</p>
@@ -250,7 +250,7 @@ export function CheckoutFlow() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="font-peak text-sm text-muted-foreground mb-4">
                     因為是手工製作，需要 3 天前預訂
                   </p>
                   <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
@@ -285,7 +285,7 @@ export function CheckoutFlow() {
                       <RadioGroupItem value="pickup" id="pickup" />
                       <Label htmlFor="pickup" className="flex-1 cursor-pointer">
                         <div className="font-medium">到店自取</div>
-                        <div className="text-sm text-muted-foreground">免運費，營業時間內取貨</div>
+                        <div className="font-peak text-sm text-muted-foreground">免運費，營業時間內取貨</div>
                       </Label>
                       <span className="font-semibold text-green-600">免運</span>
                     </div>
@@ -293,7 +293,7 @@ export function CheckoutFlow() {
                       <RadioGroupItem value="delivery" id="delivery" />
                       <Label htmlFor="delivery" className="flex-1 cursor-pointer">
                         <div className="font-medium">宅配到府</div>
-                        <div className="text-sm text-muted-foreground">冷藏配送，隔日送達</div>
+                        <div className="font-peak text-sm text-muted-foreground">冷藏配送，隔日送達</div>
                       </Label>
                       <span className="font-semibold">+NT$150</span>
                     </div>
@@ -401,14 +401,14 @@ export function CheckoutFlow() {
                     <RadioGroupItem value="transfer" id="transfer" />
                     <Label htmlFor="transfer" className="flex-1 cursor-pointer">
                       <div className="font-medium">銀行轉帳</div>
-                      <div className="text-sm text-muted-foreground">訂單成立後 24 小時內完成匯款</div>
+                      <div className="font-peak text-sm text-muted-foreground">訂單成立後 24 小時內完成匯款</div>
                     </Label>
                   </div>
                   <div className={`flex items-center space-x-3 p-4 rounded-lg border transition-colors cursor-pointer ${orderInfo.paymentMethod === "online" ? "border-primary bg-primary/5" : "border-border"}`}>
                     <RadioGroupItem value="online" id="online" />
                     <Label htmlFor="online" className="flex-1 cursor-pointer">
                       <div className="font-medium">線上付款</div>
-                      <div className="text-sm text-muted-foreground">信用卡 / LINE Pay / 街口支付</div>
+                      <div className="font-peak text-sm text-muted-foreground">信用卡 / LINE Pay / 街口支付</div>
                     </Label>
                   </div>
                 </RadioGroup>
@@ -457,11 +457,11 @@ export function CheckoutFlow() {
                   <h4 className="font-medium mb-3">取貨資訊</h4>
                   <div className="bg-muted/50 rounded-lg p-4 space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">取貨日期</span>
+                      <span className="font-peak text-muted-foreground">取貨日期</span>
                       <span>{orderInfo.pickupDate && formatDate(orderInfo.pickupDate)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">取貨方式</span>
+                      <span className="font-peak text-muted-foreground">取貨方式</span>
                       <span>{orderInfo.deliveryMethod === "pickup" ? "到店自取" : "宅配到府"}</span>
                     </div>
                   </div>
@@ -472,26 +472,26 @@ export function CheckoutFlow() {
                   <h4 className="font-medium mb-3">訂購人資訊</h4>
                   <div className="bg-muted/50 rounded-lg p-4 space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">姓名</span>
+                      <span className="font-peak text-muted-foreground">姓名</span>
                       <span>{orderInfo.name}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">手機</span>
+                      <span className="font-peak text-muted-foreground">手機</span>
                       <span>{orderInfo.phone}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Email</span>
+                      <span className="font-peak text-muted-foreground">Email</span>
                       <span>{orderInfo.email}</span>
                     </div>
                     {orderInfo.address && (
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">地址</span>
+                        <span className="font-peak text-muted-foreground">地址</span>
                         <span>{orderInfo.address}</span>
                       </div>
                     )}
                     {orderInfo.notes && (
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">備註</span>
+                        <span className="font-peak text-muted-foreground">備註</span>
                         <span>{orderInfo.notes}</span>
                       </div>
                     )}
