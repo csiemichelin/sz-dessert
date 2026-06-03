@@ -672,7 +672,7 @@ export function ContactSection() {
             ))}
           </div>
           <div className="mt-7 rounded-[30px] border border-white/55 bg-[var(--cream)] p-5 shadow-[0_18px_46px_rgba(117,88,58,0.1)] md:mt-0 md:p-6">
-            <div className="grid gap-0 divide-y divide-[var(--wood)]/12 md:grid-cols-[1fr_1.15fr] md:divide-x md:divide-y-0">
+            <div className="grid gap-0 divide-y divide-[var(--wood)]/12 md:grid-cols-2 md:divide-x md:divide-y-0">
               <div className="grid gap-0 divide-y divide-[var(--wood)]/12 pb-5 md:pb-0 md:pr-6">
                 <div className="flex gap-4 pb-5">
                   <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/65 text-[var(--brand-pink)] shadow-[0_10px_22px_rgba(117,88,58,0.09)]">
