@@ -151,7 +151,9 @@
       "description": "",
       "price": 100,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "fixed"
     },
     {
       "id": "drink-latte-iced",
@@ -159,7 +161,9 @@
       "description": "",
       "price": 160,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "fixed"
     },
     {
       "id": "drink-strawberry-soda",
@@ -167,7 +171,9 @@
       "description": "",
       "price": 130,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-blueberry-soda",
@@ -175,7 +181,9 @@
       "description": "",
       "price": 160,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-pineapple-soda",
@@ -183,7 +191,9 @@
       "description": "",
       "price": 150,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-white-peach-soda",
@@ -191,7 +201,9 @@
       "description": "",
       "price": 140,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-valrhona-cocoa-au-lait-hot",
@@ -199,7 +211,9 @@
       "description": "",
       "price": 90,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "hot",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-wakatake-matcha-au-lait-hot",
@@ -207,7 +221,9 @@
       "description": "",
       "price": 110,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "hot",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-hojicha-au-lait-hot",
@@ -215,7 +231,9 @@
       "description": "",
       "price": 80,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "hot",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-honey-black-tea-au-lait-hot",
@@ -223,7 +241,9 @@
       "description": "",
       "price": 90,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "hot",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-valrhona-cocoa-au-lait-iced",
@@ -231,7 +251,9 @@
       "description": "",
       "price": 120,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-wakatake-matcha-au-lait-iced",
@@ -239,7 +261,9 @@
       "description": "",
       "price": 180,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-honey-black-tea-au-lait-iced",
@@ -247,7 +271,9 @@
       "description": "",
       "price": 120,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "drink-hojicha-au-lait-iced",
@@ -255,7 +281,9 @@
       "description": "",
       "price": 120,
       "category": "drinks",
-      "image": "/images/drinks.jpg"
+      "image": "/images/drinks.jpg",
+      "temperature": "iced",
+      "sweetnessMode": "adjustable"
     },
     {
       "id": "gift-cheese-ball-box",

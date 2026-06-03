@@ -3,9 +3,19 @@
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react"
 import type { Product } from "./products"
 
+export type IceLevel = "正常冰" | "少冰" | "微冰" | "去冰"
+export type SweetnessLevel = "全糖" | "少糖" | "半糖" | "微糖" | "無糖" | "固定甜度"
+
+export interface CartItemOptions {
+  iceLevel?: IceLevel
+  sweetness?: SweetnessLevel
+}
+
 export interface CartItem {
+  id: string
   product: Product
   quantity: number
+  options?: CartItemOptions
 }
 
 export interface OrderInfo {
@@ -21,9 +31,10 @@ export interface OrderInfo {
 
 interface CartContextType {
   items: CartItem[]
-  addItem: (product: Product) => void
-  removeItem: (productId: string) => void
-  updateQuantity: (productId: string, quantity: number) => void
+  addItem: (product: Product, options?: CartItemOptions) => void
+  removeItem: (itemId: string) => void
+  updateQuantity: (itemId: string, quantity: number) => void
+  updateItemOptions: (itemId: string, options: CartItemOptions) => void
   clearCart: () => void
   totalItems: number
   totalPrice: number
@@ -41,6 +52,25 @@ type StoredCart = {
   orderInfo?: Partial<OrderInfo>
 }
 
+function createCartItemId(product: Product, options?: CartItemOptions) {
+  if (product.category !== "drinks") return product.id
+
+  return [
+    product.id,
+    options?.iceLevel ? `ice:${options.iceLevel}` : "",
+    options?.sweetness ? `sweetness:${options.sweetness}` : "",
+  ]
+    .filter(Boolean)
+    .join("|")
+}
+
+function normalizeCartItem(item: CartItem): CartItem {
+  return {
+    ...item,
+    id: item.id || createCartItemId(item.product, item.options),
+  }
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -53,7 +83,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
       if (storedCart) {
         const parsed = JSON.parse(storedCart) as StoredCart
-        if (Array.isArray(parsed.items)) setItems(parsed.items)
+        if (Array.isArray(parsed.items)) setItems(parsed.items.map(normalizeCartItem))
         if (parsed.orderInfo && typeof parsed.orderInfo === "object") setOrderInfo(parsed.orderInfo)
       }
     } catch {
@@ -75,34 +105,57 @@ export function CartProvider({ children }: { children: ReactNode }) {
     )
   }, [hasLoadedCart, items, orderInfo])
 
-  const addItem = useCallback((product: Product) => {
+  const addItem = useCallback((product: Product, options?: CartItemOptions) => {
+    const itemId = createCartItemId(product, options)
+
     setItems((prev) => {
-      const existing = prev.find((item) => item.product.id === product.id)
+      const existing = prev.find((item) => item.id === itemId)
       if (existing) {
         return prev.map((item) =>
-          item.product.id === product.id
+          item.id === itemId
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
       }
-      return [...prev, { product, quantity: 1 }]
+      return [...prev, { id: itemId, product, quantity: 1, options }]
     })
   }, [])
 
-  const removeItem = useCallback((productId: string) => {
-    setItems((prev) => prev.filter((item) => item.product.id !== productId))
+  const removeItem = useCallback((itemId: string) => {
+    setItems((prev) => prev.filter((item) => item.id !== itemId))
   }, [])
 
-  const updateQuantity = useCallback((productId: string, quantity: number) => {
+  const updateQuantity = useCallback((itemId: string, quantity: number) => {
     if (quantity <= 0) {
-      setItems((prev) => prev.filter((item) => item.product.id !== productId))
+      setItems((prev) => prev.filter((item) => item.id !== itemId))
     } else {
       setItems((prev) =>
         prev.map((item) =>
-          item.product.id === productId ? { ...item, quantity } : item
+          item.id === itemId ? { ...item, quantity } : item
         )
       )
     }
+  }, [])
+
+  const updateItemOptions = useCallback((itemId: string, options: CartItemOptions) => {
+    setItems((prev) => {
+      const target = prev.find((item) => item.id === itemId)
+      if (!target) return prev
+
+      const nextId = createCartItemId(target.product, options)
+      const withoutTarget = prev.filter((item) => item.id !== itemId)
+      const existing = withoutTarget.find((item) => item.id === nextId)
+
+      if (existing) {
+        return withoutTarget.map((item) =>
+          item.id === nextId
+            ? { ...item, quantity: item.quantity + target.quantity, options }
+            : item
+        )
+      }
+
+      return [...withoutTarget, { ...target, id: nextId, options }]
+    })
   }, [])
 
   const clearCart = useCallback(() => {
@@ -123,6 +176,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         addItem,
         removeItem,
         updateQuantity,
+        updateItemOptions,
         clearCart,
         totalItems,
         totalPrice,

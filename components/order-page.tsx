@@ -133,7 +133,7 @@ export function OrderPage() {
         </div>
       </section>
 
-      <section className="relative flex-1 overflow-hidden bg-white px-5 py-20 md:px-16 lg:px-5">
+      <section className="relative flex-1 overflow-hidden bg-white px-9 py-20 md:px-16 lg:px-5">
         <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
 
         {/* Products Grid */}

@@ -12,7 +12,11 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { useCart } from "@/lib/cart-context"
+import type { IceLevel, SweetnessLevel } from "@/lib/cart-context"
 import type { Product } from "@/lib/products"
+
+const iceLevels: IceLevel[] = ["正常冰", "少冰", "微冰", "去冰"]
+const sweetnessLevels: Exclude<SweetnessLevel, "固定甜度">[] = ["全糖", "少糖", "半糖", "微糖", "無糖"]
 
 interface ProductCardProps {
   product: Product
@@ -22,7 +26,12 @@ interface ProductCardProps {
 
 export function ProductCard({ product, isFirst = false, isLast = false }: ProductCardProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [iceLevel, setIceLevel] = useState<IceLevel>("正常冰")
+  const [sweetness, setSweetness] = useState<Exclude<SweetnessLevel, "固定甜度">>("全糖")
   const { addItem } = useCart()
+  const isDrink = product.category === "drinks"
+  const canAdjustIce = isDrink && product.temperature === "iced"
+  const canAdjustSweetness = isDrink && product.sweetnessMode === "adjustable"
   const edgeClassName = [
     isFirst ? "md:-mt-5 md:pt-5 lg:-mt-7 lg:pt-6" : "",
     isLast ? "md:-mb-5 md:pb-5 lg:-mb-7 lg:pb-6" : "",
@@ -61,7 +70,7 @@ export function ProductCard({ product, isFirst = false, isLast = false }: Produc
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent
           showCloseButton={false}
-          className="max-h-[calc(100dvh-2rem)] max-w-[420px] gap-0 overflow-y-auto rounded-[8px] border border-[var(--line)] bg-[var(--cream)] p-0 shadow-[0_24px_70px_rgba(75,61,45,0.22)]"
+          className="max-h-[calc(100dvh-2rem)] max-w-[calc(100%-3.5rem)] gap-0 overflow-y-auto rounded-[8px] border border-[var(--line)] bg-[var(--cream)] p-0 shadow-[0_24px_70px_rgba(75,61,45,0.22)] sm:max-w-[420px] lg:max-w-[560px]"
         >
           <div className="relative px-5 pb-5 pt-6 text-center">
             <DialogTitle className="text-2xl font-black tracking-[0.08em] text-[var(--wood-dark)]">
@@ -90,10 +99,76 @@ export function ProductCard({ product, isFirst = false, isLast = false }: Produc
             </div>
           </div>
 
+          {isDrink && (
+            <div className="grid gap-4 px-4 pt-5">
+              <div>
+                <p className="mb-2 text-sm font-black text-[var(--wood)]">冰塊</p>
+                {canAdjustIce ? (
+                  <div className="grid grid-cols-4 gap-2">
+                    {iceLevels.map((level) => (
+                      <button
+                        key={level}
+                        type="button"
+                        onClick={() => setIceLevel(level)}
+                        className={`rounded-[4px] border px-2 py-2 text-sm font-bold transition ${
+                          iceLevel === level
+                            ? "border-[var(--wood)] bg-[var(--wood)] text-white"
+                            : "border-[var(--line)] bg-white text-[var(--ink)] hover:bg-[var(--soft-pink)] active:bg-[var(--soft-pink)]"
+                        }`}
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="rounded-[4px] border border-[var(--line)] bg-white px-3 py-2 text-sm font-bold text-[var(--muted-text)]">
+                    熱飲
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <p className="mb-2 text-sm font-black text-[var(--wood)]">甜度</p>
+                {canAdjustSweetness ? (
+                  <div className="grid grid-cols-5 gap-2">
+                    {sweetnessLevels.map((level) => (
+                      <button
+                        key={level}
+                        type="button"
+                        onClick={() => setSweetness(level)}
+                        className={`rounded-[4px] border px-2 py-2 text-sm font-bold transition ${
+                          sweetness === level
+                            ? "border-[var(--wood)] bg-[var(--wood)] text-white"
+                            : "border-[var(--line)] bg-white text-[var(--ink)] hover:bg-[var(--soft-pink)] active:bg-[var(--soft-pink)]"
+                        }`}
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="rounded-[4px] border border-[var(--line)] bg-white px-3 py-2 text-sm font-bold text-[var(--muted-text)]">
+                    固定甜度
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="mt-6 flex items-center justify-between gap-4 border-t border-[var(--line)] px-4 py-4">
             <span className="text-2xl font-black text-[var(--wood)]">NT${product.price}</span>
             <Button
-              onClick={() => addItem(product)}
+              onClick={() =>
+                addItem(
+                  product,
+                  isDrink
+                    ? {
+                        iceLevel: canAdjustIce ? iceLevel : undefined,
+                        sweetness: canAdjustSweetness ? sweetness : "固定甜度",
+                      }
+                    : undefined,
+                )
+              }
               className="h-11 rounded-[4px] bg-[var(--wood-dark)] px-5 text-white hover:bg-[var(--wood)] active:bg-[var(--wood)]"
             >
               <ShoppingCart className="size-4" />

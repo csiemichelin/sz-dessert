@@ -10,6 +10,8 @@ export interface Product {
   category: ProductCategory
   image: string
   badge?: string
+  temperature?: "iced" | "hot"
+  sweetnessMode?: "fixed" | "adjustable"
 }
 
 export interface ProductCategoryItem {

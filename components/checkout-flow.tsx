@@ -217,12 +217,17 @@ export function CheckoutFlow() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {items.map((item) => (
-                  <div key={item.product.id} className="flex gap-4 py-3 border-b border-border/50 last:border-0">
+                  <div key={item.id} className="flex gap-4 py-3 border-b border-border/50 last:border-0">
                     <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-muted flex-shrink-0">
                       <Image src={item.product.image} alt={item.product.name} fill className="object-cover" />
                     </div>
                     <div className="flex-1">
                       <h4 className="font-medium">{item.product.name}</h4>
+                      {item.product.category === "drinks" && (
+                        <p className="font-peak text-xs text-muted-foreground">
+                          {item.options?.iceLevel ?? (item.product.temperature === "hot" ? "熱飲" : "正常冰")} / {item.options?.sweetness ?? "固定甜度"}
+                        </p>
+                      )}
                       <p className="font-peak text-sm text-muted-foreground">數量: {item.quantity}</p>
                     </div>
                     <div className="text-right">
@@ -431,8 +436,15 @@ export function CheckoutFlow() {
                   <h4 className="font-medium mb-3">訂購商品</h4>
                   <div className="bg-muted/50 rounded-lg p-4 space-y-2">
                     {items.map((item) => (
-                      <div key={item.product.id} className="flex justify-between text-sm">
-                        <span>{item.product.name} x {item.quantity}</span>
+                      <div key={item.id} className="flex justify-between gap-3 text-sm">
+                        <span>
+                          {item.product.name} x {item.quantity}
+                          {item.product.category === "drinks" && (
+                            <span className="font-peak block text-xs text-muted-foreground">
+                              {item.options?.iceLevel ?? (item.product.temperature === "hot" ? "熱飲" : "正常冰")} / {item.options?.sweetness ?? "固定甜度"}
+                            </span>
+                          )}
+                        </span>
                         <span>NT${item.product.price * item.quantity}</span>
                       </div>
                     ))}
