@@ -659,7 +659,7 @@ export function ContactSection() {
             {steps.map((step, index) => (
               <div
                 key={step.title}
-                className="relative z-10 flex h-full min-h-[196px] w-full flex-col items-center rounded-[26px] px-4 py-5 text-center transition hover:bg-white/28 lg:min-h-[188px]"
+                className="relative z-10 flex h-full min-h-[196px] w-full flex-col items-center rounded-[26px] px-4 py-5 text-center transition hover:-translate-y-1 hover:bg-white/28 hover:shadow-[0_22px_52px_rgba(117,88,58,0.12)] active:-translate-y-1 active:bg-white/28 active:shadow-[0_22px_52px_rgba(117,88,58,0.12)] lg:min-h-[188px]"
               >
                 <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[var(--wood)] text-2xl font-black text-white shadow-[0_14px_30px_rgba(117,88,58,0.18)] ring-4 ring-white/50 md:size-16 md:text-3xl">
                   {index + 1}
@@ -793,7 +793,7 @@ export function ReviewsSection() {
           {reviews.map((review, index) => (
             <article
               key={`${review.name}-${index}`}
-              className="relative overflow-hidden rounded-[30px] border border-white/80 bg-white/82 p-6 shadow-[0_22px_62px_rgba(75,61,45,0.1)] backdrop-blur transition hover:-translate-y-1 hover:shadow-[0_28px_78px_rgba(75,61,45,0.14)]"
+              className="relative overflow-hidden rounded-[30px] border border-white/80 bg-white/82 p-6 shadow-[0_22px_62px_rgba(75,61,45,0.1)] backdrop-blur transition hover:-translate-y-1 hover:shadow-[0_28px_78px_rgba(75,61,45,0.14)] active:-translate-y-1 active:shadow-[0_28px_78px_rgba(75,61,45,0.14)]"
             >
               <Quote className="absolute bottom-5 right-5 size-10 text-[var(--line)]" />
               <div className="mb-5 flex items-center gap-4">
