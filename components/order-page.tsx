@@ -131,7 +131,11 @@ export function OrderPage() {
           <div className="grid grid-cols-1 bg-white/82 md:overflow-hidden md:rounded-[8px] md:border md:border-[var(--line)] md:py-5 lg:py-7">
             {filteredProducts.map((product, index) => (
               <div key={product.id}>
-                <ProductCard product={product} />
+                <ProductCard
+                  product={product}
+                  isFirst={index === 0}
+                  isLast={index === filteredProducts.length - 1}
+                />
                 {index < filteredProducts.length - 1 && (
                   <div aria-hidden="true" className="relative z-20 flex items-center gap-3 py-1 md:py-0">
                     <span className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--wood)]/30 to-[var(--wood)]/55" />

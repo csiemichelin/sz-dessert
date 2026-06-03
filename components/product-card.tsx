@@ -16,18 +16,26 @@ import type { Product } from "@/lib/products"
 
 interface ProductCardProps {
   product: Product
+  isFirst?: boolean
+  isLast?: boolean
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, isFirst = false, isLast = false }: ProductCardProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { addItem } = useCart()
+  const edgeClassName = [
+    isFirst ? "md:-mt-5 md:pt-5 lg:-mt-7 lg:pt-6" : "",
+    isLast ? "md:-mb-5 md:pb-5 lg:-mb-7 lg:pb-6" : "",
+  ]
+    .filter(Boolean)
+    .join(" ")
 
   return (
     <>
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="group relative z-10 -my-2 flex min-h-24 w-full items-center justify-between gap-2 bg-white/82 px-3 py-5 text-left transition hover:bg-[var(--cream)]/70 active:bg-[var(--cream)]/70 md:gap-3 md:px-4 md:py-3 lg:min-h-32 lg:px-7 lg:py-3"
+        className={`group relative z-10 -my-2 flex min-h-24 w-full items-center justify-between gap-2 bg-white/82 px-3 py-5 text-left transition hover:bg-[var(--cream)]/70 active:bg-[var(--cream)]/70 md:gap-3 md:px-4 md:py-3 lg:min-h-32 lg:px-7 lg:py-3 ${edgeClassName}`}
       >
         <span className="flex min-w-0 flex-1 items-center gap-2.5 md:gap-3 lg:gap-5">
           <span className="relative size-16 shrink-0 overflow-hidden rounded-[6px] bg-[var(--cream)] md:size-20 lg:size-28 lg:rounded-[8px]">
