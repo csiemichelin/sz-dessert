@@ -1,0 +1,355 @@
+{
+  "categories": [
+    {
+      "id": "cookies",
+      "name": "餅乾",
+      "icon": "🍪"
+    },
+    {
+      "id": "drinks",
+      "name": "飲品",
+      "icon": "🥤"
+    },
+    {
+      "id": "gift-box",
+      "name": "禮盒",
+      "icon": "🎁"
+    }
+  ],
+  "products": [
+    {
+      "id": "cookie-milk-large",
+      "name": "奶香貓舌餅(大)",
+      "description": "",
+      "price": 180,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-milk-small",
+      "name": "奶香貓舌餅(小)",
+      "description": "",
+      "price": 60,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-earl-grey-large",
+      "name": "伯爵貓舌餅(大)",
+      "description": "",
+      "price": 180,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-earl-grey-small",
+      "name": "伯爵貓舌餅(小)",
+      "description": "",
+      "price": 60,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-cocoa-large",
+      "name": "可可貓舌餅(大)",
+      "description": "",
+      "price": 180,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-cocoa-small",
+      "name": "可可貓舌餅(小)",
+      "description": "",
+      "price": 60,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-cheese-large",
+      "name": "起司貓舌餅(大)",
+      "description": "",
+      "price": 180,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-cheese-small",
+      "name": "起司貓舌餅(小)",
+      "description": "",
+      "price": 60,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-hojicha-large",
+      "name": "焙茶貓舌餅(大)",
+      "description": "",
+      "price": 180,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-hojicha-small",
+      "name": "焙茶貓舌餅(小)",
+      "description": "",
+      "price": 60,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-matcha-large",
+      "name": "抹茶貓舌餅(大)",
+      "description": "",
+      "price": 180,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-matcha-small",
+      "name": "抹茶貓舌餅(小)",
+      "description": "",
+      "price": 60,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-honey-black-tea-large",
+      "name": "蜜香紅茶貓舌餅（大）",
+      "description": "",
+      "price": 180,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-honey-black-tea-small",
+      "name": "蜜香紅茶貓舌餅（小）",
+      "description": "",
+      "price": 60,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-red-oolong-large",
+      "name": "紅烏龍茶貓舌餅（大）",
+      "description": "",
+      "price": 180,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "cookie-red-oolong-small",
+      "name": "紅烏龍茶貓舌餅（小）",
+      "description": "",
+      "price": 60,
+      "category": "cookies",
+      "image": "/images/cat-tongue-cookies.jpg"
+    },
+    {
+      "id": "drink-americano-iced",
+      "name": "美式咖啡（冰）",
+      "description": "",
+      "price": 100,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-latte-iced",
+      "name": "咖啡拿鐵（冰）",
+      "description": "",
+      "price": 160,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-strawberry-soda",
+      "name": "草莓氣泡飲",
+      "description": "",
+      "price": 130,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-blueberry-soda",
+      "name": "藍莓氣泡飲",
+      "description": "",
+      "price": 160,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-pineapple-soda",
+      "name": "鳳梨氣泡飲",
+      "description": "",
+      "price": 150,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-white-peach-soda",
+      "name": "白桃氣泡飲",
+      "description": "",
+      "price": 140,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-valrhona-cocoa-au-lait-hot",
+      "name": "法芙娜可可歐蕾（熱）",
+      "description": "",
+      "price": 90,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-wakatake-matcha-au-lait-hot",
+      "name": "小山園若竹抹茶歐蕾（熱）",
+      "description": "",
+      "price": 110,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-hojicha-au-lait-hot",
+      "name": "焙茶歐蕾（熱）",
+      "description": "",
+      "price": 80,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-honey-black-tea-au-lait-hot",
+      "name": "蜜香紅茶歐蕾（熱）",
+      "description": "",
+      "price": 90,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-valrhona-cocoa-au-lait-iced",
+      "name": "法芙娜可可歐蕾（冰）",
+      "description": "",
+      "price": 120,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-wakatake-matcha-au-lait-iced",
+      "name": "若竹抹茶歐蕾（冰）",
+      "description": "",
+      "price": 180,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-honey-black-tea-au-lait-iced",
+      "name": "蜜香紅茶歐蕾（冰）",
+      "description": "",
+      "price": 120,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "drink-hojicha-au-lait-iced",
+      "name": "焙茶歐蕾（冰）",
+      "description": "",
+      "price": 120,
+      "category": "drinks",
+      "image": "/images/drinks.jpg"
+    },
+    {
+      "id": "gift-cheese-ball-box",
+      "name": "乳酪球禮盒",
+      "description": "",
+      "price": 340,
+      "category": "gift-box",
+      "image": "/images/gift-box.jpg"
+    }
+  ],
+  "bestSellerCategories": [
+    {
+      "id": "cookies",
+      "title": "餅乾",
+      "description": "酥脆奶香與茶香系單品，午後最容易被帶走的四款。",
+      "items": [
+        {
+          "productId": "cookie-milk-large",
+          "tags": [
+            "單品熱銷",
+            "大盒"
+          ]
+        },
+        {
+          "productId": "cookie-earl-grey-large",
+          "tags": [
+            "茶香系",
+            "大盒"
+          ]
+        },
+        {
+          "productId": "cookie-cocoa-large",
+          "tags": [
+            "可可風味",
+            "大盒"
+          ]
+        },
+        {
+          "productId": "cookie-matcha-large",
+          "tags": [
+            "人氣",
+            "大盒"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "title": "飲品",
+      "description": "清爽氣泡、香醇咖啡與歐蕾，搭配甜點剛剛好。",
+      "items": [
+        {
+          "productId": "drink-strawberry-soda",
+          "tags": [
+            "單品熱銷",
+            "氣泡飲"
+          ]
+        },
+        {
+          "productId": "drink-latte-iced",
+          "tags": [
+            "咖啡系",
+            "冰飲"
+          ]
+        },
+        {
+          "productId": "drink-wakatake-matcha-au-lait-hot",
+          "tags": [
+            "抹茶",
+            "熱飲"
+          ]
+        },
+        {
+          "productId": "drink-white-peach-soda",
+          "tags": [
+            "清爽系",
+            "氣泡飲"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift-box",
+      "title": "禮盒",
+      "description": "生日、節慶與拜訪心意，拆開就很有儀式感。",
+      "items": [
+        {
+          "productId": "gift-cheese-ball-box",
+          "tags": [
+            "送禮首選",
+            "乳酪球"
+          ]
+        }
+      ]
+    }
+  ]
+}

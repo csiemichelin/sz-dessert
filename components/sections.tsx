@@ -18,6 +18,8 @@ import {
   X,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import menuData from "@/data/menu.json"
+import reviewsData from "@/data/reviews.json"
 
 const storeImages = [
   "/images/store-style-1.jpg",
@@ -81,65 +83,29 @@ type ReviewsApiResponse = {
 const REVIEWS_PAGE_SIZE = 5
 const REVIEWS_TOTAL_LIMIT = 20
 
-const fallbackReviews: ReviewItem[] = [
-  {
-    name: "Sanny Chen",
-    role: "在地嚮導",
-    initials: "S",
-    avatarUrl: "",
-    text: "甜點都是當天現做，新鮮好吃，也可以預訂喜歡的品項。到 IG 私訊就可以特別訂製，歡迎有空過來坐坐，無用餐時間限制。",
-  },
-  {
-    name: "anya lin",
-    role: "在地嚮導",
-    initials: "A",
-    avatarUrl: "",
-    text: "蛋糕好吃、甜而不膩，奶油滑順有濃厚口感但不油膩，也能協助客製化蛋糕。整體兼具好看與好吃，當天很快就把蛋糕吃完。",
-  },
-  {
-    name: "陳苡蓁",
-    role: "Google 評論",
-    initials: "陳",
-    avatarUrl: "",
-    text: "很棒的咖啡廳，是梧棲聊天放鬆的好地方。冰淇淋大福和肉桂捲都很不錯，看到貓舌餅又加買一盒，結果也很好吃，會繼續回訪。",
-  },
-]
+const fallbackReviews = reviewsData.reviews as ReviewItem[]
+const bestSellerIconMap = {
+  cookies: Cookie,
+  drinks: Coffee,
+  "gift-box": Gift,
+}
+const productsById = new Map(menuData.products.map((product) => [product.id, product]))
+const bestSellerCategories = menuData.bestSellerCategories.map((category) => ({
+  ...category,
+  icon: bestSellerIconMap[category.id as keyof typeof bestSellerIconMap],
+  items: category.items.flatMap((item) => {
+    const product = productsById.get(item.productId)
+    if (!product) return []
 
-const bestSellerCategories = [
-  {
-    title: "餅乾",
-    description: "酥脆奶香與茶香系單品，午後最容易被帶走的四款。",
-    icon: Cookie,
-    items: [
-      { name: "奶香貓舌餅", note: "經典奶油香氣，回購率第一", price: "NT$120", image: "/images/cat-tongue-cookies.jpg" },
-      { name: "抹茶貓舌餅", note: "茶香清爽，甜度剛剛好", price: "NT$130", image: "/images/cat-tongue-cookies.jpg" },
-      { name: "巧克力貓舌餅", note: "濃郁可可尾韻，適合配咖啡", price: "NT$130", image: "/images/cat-tongue-cookies.jpg" },
-      { name: "起司貓舌餅", note: "鹹甜平衡，越吃越順口", price: "NT$140", image: "/images/cat-tongue-cookies.jpg" },
-    ],
-  },
-  {
-    title: "飲品",
-    description: "清爽氣泡、香醇咖啡與歐蕾，搭配甜點剛剛好。",
-    icon: Coffee,
-    items: [
-      { name: "草莓氣泡飲", note: "果香明亮，夏季詢問度最高", price: "NT$130", image: "/images/drinks.jpg" },
-      { name: "咖啡拿鐵", note: "奶泡細緻，甜點萬用搭檔", price: "NT$80", image: "/images/drinks.jpg" },
-      { name: "抹茶拿鐵", note: "抹茶厚度夠，茶控固定回點", price: "NT$90", image: "/images/drinks.jpg" },
-      { name: "鮮奶茶", note: "茶香溫柔，輕甜不膩口", price: "NT$75", image: "/images/drinks.jpg" },
-    ],
-  },
-  {
-    title: "禮盒",
-    description: "生日、節慶與拜訪心意，拆開就很有儀式感。",
-    icon: Gift,
-    items: [
-      { name: "乳酪球禮盒", note: "綿密乳酪球，送禮首選", price: "NT$340", image: "/images/gift-box.jpg" },
-      { name: "經典禮盒", note: "三款人氣貓舌餅一次收藏", price: "NT$350", image: "/images/gift-box.jpg" },
-      { name: "精選禮盒", note: "餅乾加乳酪球，份量更完整", price: "NT$520", image: "/images/gift-box.jpg" },
-      { name: "豪華禮盒", note: "重要日子的體面甜點組", price: "NT$680", image: "/images/gift-box.jpg" },
-    ],
-  },
-]
+    return [
+      {
+        ...item,
+        tags: item.tags ?? [],
+        product,
+      },
+    ]
+  }),
+}))
 
 const rankStyles = [
   {
@@ -525,7 +491,7 @@ export function MenuSection() {
               return (
                 <a
                   href="/order"
-                  key={item.name}
+                  key={item.product.id}
                   className="group relative mx-auto w-full max-w-[360px] rounded-[28px] border border-white/80 bg-white p-3 shadow-[0_16px_40px_rgba(75,61,45,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_58px_rgba(75,61,45,0.14)] active:-translate-y-1 active:shadow-[0_24px_58px_rgba(75,61,45,0.14)] md:max-w-[320px] md:p-4 lg:max-w-none"
                 >
                   <div className={`pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 ${rank.gradient}`} />
@@ -556,16 +522,22 @@ export function MenuSection() {
                     />
                   )}
                   <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-[22px] bg-[var(--cream)]">
-                    <Image src={item.image} alt={item.name} fill className="object-cover transition duration-500 group-hover:scale-105 group-active:scale-105" />
+                    <Image src={item.product.image} alt={item.product.name} fill className="object-cover transition duration-500 group-hover:scale-105 group-active:scale-105" />
                     <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(40,32,24,0.34)] to-transparent" />
                   </div>
                   <div className="relative flex min-h-[132px] flex-col">
                     <p className="text-xs font-black uppercase tracking-[0.14em] text-[var(--brand-pink)]">No. {index + 1}</p>
-                    <h4 className="mt-2 text-xl font-black leading-tight text-[var(--ink)]">{item.name}</h4>
-                    <p className="font-peak mt-2 text-sm leading-6 text-[var(--muted-text)]">{item.note}</p>
+                    <h4 className="mt-2 text-xl font-black leading-tight text-[var(--ink)]">{item.product.name}</h4>
+                    <p className="font-peak mt-2 text-sm leading-6 text-[var(--muted-text)]">{item.product.description}</p>
                     <div className="mt-auto flex items-end justify-between gap-3 pt-5">
-                      <span className="rounded-full bg-[var(--cream)] px-3 py-1.5 text-xs font-bold text-[var(--muted-text)]">單品熱銷</span>
-                      <span className="text-xl font-black text-[var(--wood)]">{item.price}</span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {item.tags.map((tag) => (
+                          <span key={tag} className="rounded-full bg-[var(--cream)] px-3 py-1.5 text-xs font-bold text-[var(--muted-text)]">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <span className="shrink-0 text-xl font-black text-[var(--wood)]">NT${item.product.price}</span>
                     </div>
                   </div>
                 </a>

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import reviewsData from "@/data/reviews.json"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -7,6 +8,7 @@ type ScrapedReview = {
   name: string
   role: string
   initials: string
+  avatarUrl?: string
   text: string
   rating: number
   timeAgo: string
@@ -23,32 +25,7 @@ const PLACE_URL =
 const MAX_FETCH_COUNT = 20
 const CACHE_TTL_MS = 1000 * 60 * 30
 
-const fallbackReviews: ScrapedReview[] = [
-  {
-    name: "Sanny Chen",
-    role: "在地嚮導",
-    initials: "S",
-    text: "甜點都是當天現做，新鮮好吃，也可以預訂喜歡的品項。到 IG 私訊就可以特別訂製，歡迎有空過來坐坐，無用餐時間限制。",
-    rating: 5,
-    timeAgo: "4 個月前",
-  },
-  {
-    name: "anya lin",
-    role: "在地嚮導",
-    initials: "A",
-    text: "蛋糕好吃、甜而不膩，奶油滑順有濃厚口感但不油膩，也能協助客製化蛋糕。整體兼具好看與好吃，當天很快就把蛋糕吃完。",
-    rating: 5,
-    timeAgo: "3 個月前",
-  },
-  {
-    name: "陳苡蓁",
-    role: "在地嚮導",
-    initials: "陳",
-    text: "很棒的咖啡廳，是梧棲聊天放鬆的好地方。冰淇淋大福和肉桂捲都很不錯，看到貓舌餅又加買一盒，結果也很好吃，會繼續回訪。",
-    rating: 5,
-    timeAgo: "11 個月前",
-  },
-]
+const fallbackReviews = reviewsData.reviews as ScrapedReview[]
 
 let cache: CacheShape | null = null
 
