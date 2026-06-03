@@ -16,13 +16,20 @@ const categoryIcons = {
   drinks: Coffee,
   "gift-box": Gift,
 }
+const PRODUCTS_PER_PAGE = 5
 
 export function OrderPage() {
   const [activeCategory, setActiveCategory] = useState<string>("cookies")
+  const [page, setPage] = useState(1)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { totalItems, setIsCartOpen } = useCart()
 
   const filteredProducts = products.filter((p) => p.category === activeCategory)
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE))
+  const pagedProducts = filteredProducts.slice(
+    (page - 1) * PRODUCTS_PER_PAGE,
+    page * PRODUCTS_PER_PAGE,
+  )
   const ActiveCategoryIcon = categoryIcons[activeCategory]
 
   return (
@@ -112,7 +119,10 @@ export function OrderPage() {
                       ? "bg-[var(--wood)] text-white"
                       : "bg-[var(--cream)] text-[var(--ink)] hover:bg-[var(--soft-pink)] active:bg-[var(--soft-pink)]"
                   }`}
-                  onClick={() => setActiveCategory(category.id)}
+                  onClick={() => {
+                    setActiveCategory(category.id)
+                    setPage(1)
+                  }}
                 >
                   <Icon className="size-4" />
                   {category.name}
@@ -128,7 +138,7 @@ export function OrderPage() {
 
         {/* Products Grid */}
         <main className="relative mx-auto max-w-3xl lg:max-w-7xl">
-          <div className="grid grid-cols-1 bg-white/82 md:overflow-hidden md:rounded-[8px] md:border md:border-[var(--line)] md:py-5 lg:py-7">
+          <div className="grid grid-cols-1 bg-white/82 md:hidden">
             {filteredProducts.map((product, index) => (
               <div key={product.id}>
                 <ProductCard
@@ -148,6 +158,54 @@ export function OrderPage() {
               </div>
             ))}
           </div>
+
+          <div className="hidden grid-cols-1 bg-white/82 md:grid md:overflow-hidden md:rounded-[8px] md:border md:border-[var(--line)] md:py-5 lg:py-7">
+            {pagedProducts.map((product, index) => (
+              <div key={product.id}>
+                <ProductCard
+                  product={product}
+                  isFirst={index === 0}
+                  isLast={index === pagedProducts.length - 1}
+                />
+                {index < pagedProducts.length - 1 && (
+                  <div aria-hidden="true" className="relative z-20 flex items-center gap-3 py-1 md:py-0">
+                    <span className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--wood)]/30 to-[var(--wood)]/55" />
+                    <span className="relative z-30 flex size-7 shrink-0 items-center justify-center rounded-full bg-white/58 text-[var(--wood)] backdrop-blur-[1px] shadow-[0_0_0_2px_rgba(255,255,255,0.32)]">
+                      <ActiveCategoryIcon className="size-4" />
+                    </span>
+                    <span className="h-px flex-1 bg-gradient-to-r from-[var(--wood)]/55 via-[var(--wood)]/30 to-transparent" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {filteredProducts.length > PRODUCTS_PER_PAGE && (
+            <div className="mt-10 hidden items-center justify-center gap-4 md:flex">
+              <button
+                type="button"
+                aria-label="前一頁"
+                disabled={page <= 1}
+                onClick={() => setPage((prev) => Math.max(1, prev - 1))}
+                className="group flex size-14 items-center justify-center rounded-full border border-[var(--line)] bg-white shadow-[0_8px_24px_rgba(75,61,45,0.10)] transition hover:border-[var(--wood)] hover:bg-[var(--wood)] active:border-[var(--wood)] active:bg-[var(--wood)] disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--ink)] transition group-hover:text-white group-active:text-white">
+                  <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                aria-label="下一頁"
+                disabled={page >= totalPages}
+                onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
+                className="group flex size-14 items-center justify-center rounded-full border border-[var(--line)] bg-white shadow-[0_8px_24px_rgba(75,61,45,0.10)] transition hover:border-[var(--wood)] hover:bg-[var(--wood)] active:border-[var(--wood)] active:bg-[var(--wood)] disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--ink)] transition group-hover:text-white group-active:text-white">
+                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+          )}
 
           {filteredProducts.length === 0 && (
             <div className="text-center py-12">
