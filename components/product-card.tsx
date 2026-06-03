@@ -26,6 +26,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product, isFirst = false, isLast = false }: ProductCardProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isAdded, setIsAdded] = useState(false)
   const [iceLevel, setIceLevel] = useState<IceLevel>("正常冰")
   const [sweetness, setSweetness] = useState<Exclude<SweetnessLevel, "固定甜度">>("全糖")
   const { addItem } = useCart()
@@ -43,7 +44,10 @@ export function ProductCard({ product, isFirst = false, isLast = false }: Produc
     <>
       <button
         type="button"
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsAdded(false)
+          setIsOpen(true)
+        }}
         className={`group relative z-10 -my-2 flex min-h-24 w-full items-center justify-between gap-2 bg-white/82 px-3 py-5 text-left transition hover:bg-[var(--cream)]/70 active:bg-[var(--cream)]/70 md:gap-3 md:px-4 md:py-3 lg:min-h-32 lg:px-7 lg:py-3 ${edgeClassName}`}
       >
         <span className="flex min-w-0 flex-1 items-center gap-2.5 md:gap-3 lg:gap-5">
@@ -67,7 +71,13 @@ export function ProductCard({ product, isFirst = false, isLast = false }: Produc
         </span>
       </button>
 
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog
+        open={isOpen}
+        onOpenChange={(open) => {
+          setIsOpen(open)
+          if (!open) setIsAdded(false)
+        }}
+      >
         <DialogContent
           showCloseButton={false}
           className="max-h-[calc(100dvh-2rem)] max-w-[calc(100%-3.5rem)] gap-0 overflow-y-auto rounded-[8px] border border-[var(--line)] bg-[var(--cream)] p-0 shadow-[0_24px_70px_rgba(75,61,45,0.22)] sm:max-w-[420px] lg:max-w-[560px]"
@@ -158,7 +168,7 @@ export function ProductCard({ product, isFirst = false, isLast = false }: Produc
           <div className="mt-6 flex items-center justify-between gap-4 border-t border-[var(--line)] px-4 py-4">
             <span className="text-2xl font-black text-[var(--wood)]">NT${product.price}</span>
             <Button
-              onClick={() =>
+              onClick={() => {
                 addItem(
                   product,
                   isDrink
@@ -168,11 +178,17 @@ export function ProductCard({ product, isFirst = false, isLast = false }: Produc
                       }
                     : undefined,
                 )
-              }
-              className="h-11 rounded-[4px] bg-[var(--wood-dark)] px-5 text-white hover:bg-[var(--wood)] active:bg-[var(--wood)]"
+                setIsAdded(true)
+                window.setTimeout(() => setIsOpen(false), 420)
+              }}
+              className={`h-11 rounded-[4px] px-5 text-white transition ${
+                isAdded
+                  ? "bg-[var(--wood)]"
+                  : "bg-[var(--wood-dark)] hover:bg-[var(--wood)] active:bg-[var(--wood)]"
+              }`}
             >
               <ShoppingCart className="size-4" />
-              加入購物車
+              {isAdded ? "已加入" : "加入購物車"}
             </Button>
           </div>
         </DialogContent>
