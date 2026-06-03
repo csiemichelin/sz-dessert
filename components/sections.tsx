@@ -199,7 +199,7 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)]/70 bg-[rgba(253,250,244,0.76)] backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-16 lg:px-5">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-16 lg:max-w-7xl lg:px-5">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/logo.png" alt="萱仔甜點 Logo" width={46} height={46} className="rounded-full" />
           <span className="text-xl font-black text-[var(--ink)]">萱仔甜點</span>
@@ -388,8 +388,8 @@ export function HeroWoodSection() {
           aria-hidden="true"
           className="h-full w-full object-cover object-top"
         />
-        <div className="absolute inset-x-2 top-1/2 mx-auto max-w-6xl -translate-y-1/2 sm:inset-x-8 md:inset-x-16 lg:inset-x-8 lg:top-[54%]">
-          <div className="px-2 text-[var(--ink)] sm:px-4 sm:py-4">
+        <div className="absolute inset-x-2 top-1/2 mx-auto max-w-6xl -translate-y-1/2 sm:inset-x-8 md:inset-x-16 lg:inset-x-5 lg:max-w-7xl lg:top-[54%]">
+          <div className="px-2 text-[var(--ink)] sm:px-4 sm:py-4 lg:px-0">
             <h2 className="mb-1 text-base font-black leading-none text-[var(--wood-dark)] sm:mb-2 sm:text-xl">最新消息</h2>
             <div className="mb-1.5 flex items-center justify-center gap-3 sm:mb-2">
               <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent via-[var(--wood)] to-transparent opacity-70" />
@@ -450,7 +450,7 @@ function NewsRow({ item }: { item: (typeof latestNews)[number] }) {
 export function AboutSection() {
   return (
     <section id="space" className="relative overflow-hidden bg-white px-5 py-20 md:px-16 lg:px-5">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl lg:max-w-7xl">
         <div className="mb-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <SectionTitle
             eyebrow="Store Atmosphere"
@@ -492,7 +492,7 @@ export function MenuSection() {
   return (
     <section id="menu" className="relative overflow-hidden bg-white px-5 py-20 md:px-16 lg:px-5">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative mx-auto max-w-6xl lg:max-w-7xl">
         <div className="mx-auto mb-8 w-full max-w-[360px] md:max-w-none">
           <SectionTitle eyebrow="Best Sellers" title="熱銷商品" />
         </div>
@@ -519,7 +519,7 @@ export function MenuSection() {
             })}
           </div>
 
-          <div className="mx-auto mt-8 grid w-full max-w-[360px] gap-8 md:max-w-[680px] md:grid-cols-2 md:gap-5 lg:max-w-none xl:grid-cols-4">
+          <div className="mx-auto mt-8 grid w-full max-w-[360px] gap-8 md:max-w-[680px] md:grid-cols-2 md:gap-x-5 md:gap-y-10 lg:max-w-7xl lg:gap-5 xl:grid-cols-4">
             {active.items.map((item, index) => {
               const rank = rankStyles[index]
               return (
@@ -589,7 +589,7 @@ export function MenuSection() {
 export function ContactSection() {
   return (
     <section id="how" className="wood-grain-light wood-grain-b wood-grain-faded relative border-t border-[var(--line)] bg-[var(--light-wood)] px-5 py-20 md:px-16 lg:px-5">
-      <div className="mx-auto grid w-full max-w-[360px] gap-4 md:max-w-6xl md:gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div className="mx-auto grid w-full max-w-[360px] gap-4 md:max-w-6xl md:gap-10 lg:max-w-7xl lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <SectionTitle
             eyebrow="How it works"
@@ -776,7 +776,7 @@ export function ReviewsSection() {
     <section id="reviews" className="relative overflow-hidden border-t border-[var(--line)] bg-white px-5 py-20 md:px-16 lg:px-5">
       <div className="terrazzo pointer-events-none absolute inset-0 opacity-40" />
 
-      <div className="relative mx-auto w-full max-w-[360px] md:max-w-6xl">
+      <div className="relative mx-auto w-full max-w-[360px] md:max-w-6xl lg:max-w-7xl">
         <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <SectionTitle
             eyebrow="Google Reviews"
@@ -859,7 +859,7 @@ export function ReviewsSection() {
 export function Footer() {
   return (
     <footer className="wood-grain-light wood-grain-c wood-grain-faded bg-[var(--light-wood)] px-5 py-2 sm:py-4 md:px-16 lg:px-5">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 border-t border-[var(--line)] pt-2 text-center sm:flex-row sm:gap-2 sm:pt-3 sm:text-left">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 border-t border-[var(--line)] pt-2 text-center sm:flex-row sm:gap-2 sm:pt-3 sm:text-left lg:max-w-7xl">
         <Image src="/logo.png" alt="萱仔甜點" width={28} height={28} className="size-7 rounded-full sm:size-8" />
         <p className="text-[11px] leading-4 text-[var(--muted-text)] sm:text-xs sm:leading-5">
           © 2024 <span className="font-black text-[var(--wood)]">萱仔甜點</span> S.Z Dessert. All rights reserved. Designed by{" "}

@@ -29,7 +29,7 @@ export function OrderPage() {
     <div className="flex min-h-screen flex-col bg-background pt-16">
       {/* Header */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)]/70 bg-[rgba(253,250,244,0.76)] backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-16 lg:px-5">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-16 lg:max-w-7xl lg:px-5">
           <Link href="/" className="flex items-center gap-3">
             <Image src="/logo.png" alt="萱仔甜點" width={46} height={46} className="rounded-full" />
             <span className="text-xl font-black text-[var(--ink)]">萱仔甜點</span>
@@ -94,7 +94,7 @@ export function OrderPage() {
 
       {/* Hero */}
       <section className="wood-grain-light wood-grain-c wood-grain-faded bg-[var(--light-wood)] px-5 py-12 md:px-16 lg:px-5">
-        <div className="mx-auto max-w-6xl text-center">
+        <div className="mx-auto max-w-6xl text-center lg:max-w-7xl">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">立即訂購</h1>
           <p className="font-peak text-muted-foreground max-w-md mx-auto">
             挑選喜愛的甜點，讓幸福從第一口開始
@@ -127,7 +127,7 @@ export function OrderPage() {
         <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
 
         {/* Products Grid */}
-        <main className="relative mx-auto max-w-3xl lg:max-w-4xl">
+        <main className="relative mx-auto max-w-3xl lg:max-w-7xl">
           <div className="grid grid-cols-1 bg-white/82 md:overflow-hidden md:rounded-[8px] md:border md:border-[var(--line)] md:py-5 lg:py-7">
             {filteredProducts.map((product, index) => (
               <div key={product.id}>
