@@ -32,7 +32,7 @@ export function CartSidebar() {
   return (
     <>
     <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
-      <SheetContent className="flex w-[74vw] max-w-[320px] flex-col border-l border-[var(--line)] bg-[var(--cream)] p-0 sm:w-full sm:max-w-md [&>button]:hidden">
+      <SheetContent className="flex h-dvh w-[74vw] max-w-[320px] flex-col border-l border-[var(--line)] bg-[var(--cream)] p-0 sm:w-full sm:max-w-md [&>button]:hidden">
         <SheetHeader className="sr-only">
           <SheetTitle>
             <ShoppingBag className="w-5 h-5" />
@@ -67,8 +67,8 @@ export function CartSidebar() {
             </Button>
           </div>
         ) : (
-          <>
-            <ScrollArea className="flex-1">
+          <div className="flex min-h-0 flex-1 flex-col">
+            <ScrollArea className="min-h-0 flex-1 overflow-y-auto">
               <div>
                 {items.map((item) => {
                   const isDrink = item.product.category === "drinks"
@@ -141,7 +141,7 @@ export function CartSidebar() {
               </div>
             </ScrollArea>
             
-            <div className="border-t border-[var(--line)] bg-[var(--cream)] px-4 py-4">
+            <div className="shrink-0 border-t border-[var(--line)] bg-[var(--cream)] px-4 py-4">
               <div className="mb-4 flex items-center justify-between">
                 <span className="text-lg font-black text-[var(--ink)]">Total:</span>
                 <span className="text-base font-black text-[var(--wood)]">NT${totalPrice}.00</span>
@@ -157,7 +157,7 @@ export function CartSidebar() {
                 </Button>
               </div>
             </div>
-          </>
+          </div>
         )}
       </SheetContent>
     </Sheet>
