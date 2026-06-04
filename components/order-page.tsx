@@ -134,11 +134,27 @@ export function OrderPage() {
       </section>
 
       <section className="relative flex-1 overflow-hidden bg-white px-9 py-20 md:px-16 lg:px-5">
-        <div className="terrazzo pointer-events-none absolute inset-0 opacity-35" />
+        <div className="terrazzo pointer-events-none absolute inset-0 z-0 opacity-35" />
+        <Image
+          src="/images/cookie_1.png"
+          alt=""
+          width={300}
+          height={300}
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-16 -top-14 z-0 w-72 rotate-[14deg] opacity-90 md:-right-28 md:-top-24 md:w-[28rem] lg:-right-48 lg:-top-40 lg:w-[52rem]"
+        />
+        <Image
+          src="/images/cookie_2.png"
+          alt=""
+          width={300}
+          height={300}
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-8 -left-16 z-0 w-72 rotate-[-14deg] opacity-90 md:-bottom-14 md:-left-28 md:w-[28rem] lg:-bottom-28 lg:-left-56 lg:w-[52rem]"
+        />
 
         {/* Products Grid */}
-        <main className="relative mx-auto max-w-3xl lg:max-w-7xl">
-          <div className="grid grid-cols-1 bg-white/82 md:hidden">
+        <main className="relative z-10 mx-auto max-w-3xl lg:max-w-7xl">
+          <div className="grid grid-cols-1 bg-transparent md:hidden">
             {filteredProducts.map((product, index) => (
               <div key={product.id}>
                 <ProductCard

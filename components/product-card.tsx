@@ -48,7 +48,7 @@ export function ProductCard({ product, isFirst = false, isLast = false }: Produc
           setIsAdded(false)
           setIsOpen(true)
         }}
-        className={`group relative z-10 -my-2 flex min-h-24 w-full items-center justify-between gap-2 bg-white/82 px-3 py-5 text-left transition hover:bg-[var(--cream)]/70 active:bg-[var(--cream)]/70 md:gap-3 md:px-4 md:py-3 lg:min-h-32 lg:px-7 lg:py-3 ${edgeClassName}`}
+        className={`group relative z-10 -my-2 flex min-h-24 w-full items-center justify-between gap-2 bg-transparent px-3 py-5 text-left transition hover:bg-[var(--cream)]/70 active:bg-[var(--cream)]/70 md:bg-white/82 md:gap-3 md:px-4 md:py-3 lg:min-h-32 lg:px-7 lg:py-3 ${edgeClassName}`}
       >
         <span className="flex min-w-0 flex-1 items-center gap-2.5 md:gap-3 lg:gap-5">
           <span className="relative size-16 shrink-0 overflow-hidden rounded-[6px] bg-[var(--cream)] md:size-20 lg:size-28 lg:rounded-[8px]">
